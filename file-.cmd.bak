@@ -1,0 +1,23 @@
+:ENTRY
+	call IBIT_Log %0 %*
+
+
+
+:MAIN
+	sed -n "/^\.Syntax\./,/\.\./p" %~n0%~x0
+
+
+
+:EXIT
+	Exit /B
+
+
+
+
+.Syntax.
+file-xxx
+
+file-yyy
+
+
+..

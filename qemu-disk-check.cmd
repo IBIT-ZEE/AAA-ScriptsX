@@ -1,0 +1,1 @@
+''' C:\APL\!TOOLS\_SYSTEM\_VIRTUALIZATION\QEmu64\qemu-img.exe compare x.vhdx x.vmdk

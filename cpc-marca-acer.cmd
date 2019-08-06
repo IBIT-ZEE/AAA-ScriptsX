@@ -1,0 +1,1 @@
+AAA-LogX opera-browser.cmd https://cpcdi.pt/Produtos/PesquisaIntermedia?marca=Acer

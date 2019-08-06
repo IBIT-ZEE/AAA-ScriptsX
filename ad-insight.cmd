@@ -1,0 +1,1 @@
+ad-insight.lnk 

@@ -1,0 +1,83 @@
+:ENTRY
+	setlocal
+	CALL aaa-log %0 %*
+	if "%1"=="" goto CATCH1
+
+	
+:INITIALIZE
+	:: prompt ^> 
+	:: set aavShell=0
+	:: call !isShell.cmd
+	:: if errorlevel 1 set aavShell=1
+	:: if %aavShell%==1 mode con lines=8 cols=64
+
+:BEGIN
+
+
+:MAIN
+	:: 2do/rethink
+	:: ?try for script extensions
+	:: ?try also ScriptsX
+	set aavTemp1=%1
+	set aavTemp2=
+	if not %aavTemp1:~-4%==.cmd set aavTemp1=%aavTemp1%.cmd
+	if exist c:\dat\#scripts\%1.cmd  set aavTemp2=c:\dat\#scripts
+	if exist c:\dat\#scriptsX\%1.cmd set aavTemp2=c:\dat\#scriptsX
+	if "%aavTemp2%"=="" goto :CATCH2
+
+	set aavTemp3=%aavTemp2%\%aavTemp1%
+	start /b "%aavTemp3%" edit %aavTemp3%
+	if ERRORLEVEL 1 goto :CATCH0
+	goto END
+
+	
+:CATCH0
+	:: catch no GREP or other command error
+	grep -Poz "^:TEXT0\K[\w\W]*?(?=:)" %~f0
+	echo ERRORLEVEL%errorlevel% ~ %date% * %time% ~ %cd%
+	Timeout 60
+	goto END
+
+
+:CATCH1
+	:: help syntax/*comments/etc.
+	grep -Poz "^:TEXT1\K[\w\W]*?(?=:)" %~f0
+	Timeout 60
+	goto END
+
+:CATCH2
+	:: exception setting ERRORLEVEL
+	echo ^> %aavTemp%
+	grep -Poz "^:TEXT2\K[\w\W]*?(?=:)" %~f0
+	:: return errorlevel1=file-not-in-path
+	set aavErrorlevel=1
+	goto END
+
+
+:END
+	echo,
+	echo,
+
+
+:FINALIZE
+
+	
+:EXIT
+	exit /b
+	endlocal
+
+
+:TEXT0
+An error has occured
+
+:TEXT1
+Edit-Script
+
+	*	search for the #Scripts/#ScriptsX folder 
+		and edit the file
+
+:TEXT2
+
+	File is not in scripts folder (#Script/#ScriptsX)
+
+:

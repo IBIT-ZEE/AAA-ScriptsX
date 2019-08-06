@@ -1,0 +1,1 @@
+aaa-mainX %~n0
