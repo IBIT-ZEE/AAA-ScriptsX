@@ -13,9 +13,10 @@ CALL aaa-log %0 %*
 		setx aaa-Host	%aaa-host%
 		setx aaa-Baks	D:\!!!!BAKS\%aaa-host%
 		setx aaa-Logs	C:\XXX\!!!!LOGS
-		setx aaa-Tags	c:\dat\$kb\aaa-tags.$kb
-		setx aaa-Temp	D:\!!!!TEMP		
-		setx aaa-Pool	D:\!!!!POOL
+		setx aaa-Tags	C:\DAT\$kb\aaa-tags.$kb
+		setx aaa-Temp	C:\XXX\!!!!TEMP
+		setx aaa-Test	C:\XXX\!!!!TEST
+		setx aaa-Pool	C:\XXX\!!!!POOL
 		setx aaa-Timeout	5
 		)
 	:: setlocal

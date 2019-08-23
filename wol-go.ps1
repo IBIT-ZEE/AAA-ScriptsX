@@ -9,20 +9,26 @@ AAA-Log
 
 "WOL <> Wake-On-Lan`n"
 
-# Menu stuff to obtain a selected-option/string
+# MENU DATA LOAD
 $xTable = Array-Load ( $AAA.Folders.AAA + "\_data\wol-go.dat" )
 
-# $xMenu  = AAA-Groupify $xTable.Id $xTable.Group
+# MENU, MORE...
+$xTable += [PSCustomObject]@{ Id = "Quit"; Group = "More..." };
+
 $xOption = AAA-Menu $xTable.Id $xTable.Group
-# $xIndex = $xTable.Id.IndexOf( $xOption );
 
-"`n`n"
+$xId = $xTable[ $xOption ].Id;
 
-AAA-Alert ( "Waking device [{0}] -> ( {1} )..." -f $xTable.Id[ $xOption ], $xTable.MAC[ $xOption ] )
+# ?QUIT -> Error-Code=1
+if ( $xId -eq $xTable[-1].Id ){ exit 1 }
 
-IP-WOL( $xTable.MAC[ $xOption ] )
-
-AAA-ProgressFake;
+""
+String-Line;
+"Waking device [{0}] -> ( {1} )..." -f $xId, $xTable.MAC[ $xOption ] 
+# String-Center ( "Waking device [{0}] -> ( {1} )..." -f $xId, $xTable.MAC[ $xOption ] )
+# AAA-Alert ( "Waking device [{0}] -> ( {1} )..." -f $xTable.Id[ $xOption ], $xTable.MAC[ $xOption ] )
+IP-WOL( $xTable.MAC[ $xOption ] );
+AAA-ProgressFake;;
 
 
 

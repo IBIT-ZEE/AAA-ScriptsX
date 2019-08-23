@@ -8,7 +8,10 @@
 
 
 :MAIN
-	if "%1"=="" aaa-mainX.cmd %~0
+	:: if self-calling with no <params> to log... 
+	:: then...
+	:: rercursive passing <self> as paramenter
+	if "%1"=="" ( call aaa-log aaa-main.cmd & aaa-main.cmd %~0 )
 
 	grep -Poz "\n:OBS\K[\w\W]*?(?=\n:)" %~dpn1.cmd
 	echo,

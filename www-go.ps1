@@ -33,7 +33,6 @@ $xUser = AAA-Menu @( "ZEE", "AAA", "IBIT", "PINKREEF" );
 
 # SERVICE
 $xData = Array-Load ( $AAA.AAA + "\_data\www-go.dat" );
-# $xFlat = AAA-Groupify $xData.Name $xData.Group;
 String-Line;
 "?Cloud/Services"
 ""
