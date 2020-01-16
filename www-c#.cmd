@@ -1,0 +1,1 @@
+AAA-Menu-WWW.ps1 %~n0

@@ -1,6 +1,5 @@
 :: Template for AAA *- commands
 :: Boilerplate/Skeleton for scripts
-:: Goal : Unify COnsole+GUI+MicroConsole+Languages+Utils+Applications
 
 :ENTRY
 	setlocal
@@ -49,10 +48,13 @@
 	exit /b
 
 
-:OBS0
+:OBS
 	
-video- is the root of video related funcionality
-mainly using of FFMPEG in his miriad of forms
+video- 
+
+	is the root of video related funcionality
+	mainly using of FFMPEG in his miriad of forms
+	
 	*-clear ....... EXIF clean
 	*-capture .....
 	*-rotate ...... show command line format
@@ -62,23 +64,6 @@ mainly using of FFMPEG in his miriad of forms
 	*-stream ......
 	*-ToImage ..... Split video in frames
 	*-FromImage ... Assemble frames to video
-
-
-:TEXT0
-
-	video-*
-
-	Template for aaa-* scripts (language agnostic)
-
-	*-method1 ___ short explain...
-	*-method2 ___ short explain...
-	...
-
-
-:ERROR0
-
-	An error has occured/0
-
 :
 
 

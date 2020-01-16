@@ -23,12 +23,11 @@ $xId = $xTable[ $xOption ].Id;
 if ( $xId -eq $xTable[-1].Id ){ exit 1 }
 
 ""
-String-Line;
-"Waking device [{0}] -> ( {1} )..." -f $xId, $xTable.MAC[ $xOption ] 
-# String-Center ( "Waking device [{0}] -> ( {1} )..." -f $xId, $xTable.MAC[ $xOption ] )
-# AAA-Alert ( "Waking device [{0}] -> ( {1} )..." -f $xTable.Id[ $xOption ], $xTable.MAC[ $xOption ] )
-IP-WOL( $xTable.MAC[ $xOption ] );
-AAA-ProgressFake;;
+AAA-Alert "Waking device $xId", $xTable[ $xOption ].MAC;
+IP-WOL( $xTable[ $xOption ].MAC );
+AAA-ProgressFake;
+
+
 
 
 

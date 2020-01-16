@@ -12,7 +12,7 @@ setlocal
 	call :JOIN %*
 	:: %aavTemp% can be refined by using goole + %20 etc.
 	
-	www-google %aavTemp%
+	google-chrome.cmd http://google.com/search?q="%*"
 	goto :END
 
 :JOIN

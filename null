@@ -1,8 +1,0 @@
-
-Pinging Miguel [10.0.1.11] with 32 bytes of data:
-Reply from 10.0.1.11: bytes=32 time<1ms TTL=128
-
-Ping statistics for 10.0.1.11:
-    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
-Approximate round trip times in milli-seconds:
-    Minimum = 0ms, Maximum = 0ms, Average = 0ms

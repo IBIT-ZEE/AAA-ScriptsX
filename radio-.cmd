@@ -1,1 +1,1 @@
-aaa-message "use radios-"
+aaa-mainX %~n0

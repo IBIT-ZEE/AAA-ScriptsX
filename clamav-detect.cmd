@@ -1,0 +1,1 @@
+AAA-LogX clamav -v -i -r --bell %*
