@@ -1,1 +1,1 @@
-"c:\APL\!TOOLS\NirSoft64\winprefetchview.exe" 
+"c:\APL\!TOOLS\NirSoft\x64\winprefetchview.exe" %*

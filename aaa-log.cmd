@@ -10,9 +10,7 @@ echo,
 if "%~1"=="" aaa-main %~f0
 
 :MAIN
-	echo ERRORLEVEL%errorlevel% ~ %date%-%time% ~ %cd% >> c:\xxx\!!!!LOGS\aaa-run.log
-	echo %* >> c:\xxx\!!!!LOGS\aaa-run.log
-
+	echo ERRORLEVEL%errorlevel% ~ %date%-%time% ~ %cd% ~ %* >> c:\xxx\!!!!LOGS\aaa-run.log
 	exit /b
 
 :OBS

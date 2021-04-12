@@ -1,0 +1,1 @@
+vssadmin list volumes

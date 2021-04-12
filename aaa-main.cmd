@@ -35,12 +35,14 @@
 
 :OBS
 	AAA-Main %~0
+	
 	AAA-Script environment internal extender
 
 	0. Show organization logo
-	1. Show :OBS messages from script %1 (caller %0)
+	1. Show :OBS messages from script %1 ( <caller> = %0 )
 	2. Show related/descendant files
-	* return to caller for extra processing
+
+	* use AAA-Obs.cmd or AAA-Message.cmd for simpler operations
 
 	p1/1 ~ script name in full-path format ( "%~f0" )
 :

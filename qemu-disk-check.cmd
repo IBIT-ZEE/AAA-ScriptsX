@@ -1,1 +1,3 @@
-''' C:\APL\!TOOLS\_SYSTEM\_VIRTUALIZATION\QEmu64\qemu-img.exe compare x.vhdx x.vmdk
+Call AAA-Message "Image types:" "" "QCOW/QCOW2 VHD/VHDX VDI VMDK Raw ..."
+
+'''' C:\APL\QEmu64\qemu-img.exe check x.vhdx

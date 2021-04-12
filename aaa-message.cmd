@@ -14,9 +14,15 @@
 :MAIN
 	:: if "%~1%~2%~3%~4%~5%~6%~7%~8%~9"=="" goto :CATCH1
 	
-	Call aaa-log %0 %* 
+	:: PERMIT %1 AS ""
+	if "%~1"=="" if "%~2"=="" (
+		:: CANT USE SELF/AAA-MESSAGE
+		Call aaa-log %0 %*
+		grep -Poz "\n:OBS\K[\w\W]*?(?=\n:)" %~f0
+		goto :END
+		)
 	
-	if "%~1"=="" aaa-main %~f0
+	if NOT "%~1"=="" Call aaa-log %0 %*
 
 	for %%f in (%*) do (
 		if "%%~f"=="" (echo,) else (echo 	%%~f)
@@ -65,5 +71,6 @@ aaa-message <message-to-display> ...
 	
 	use "" for a blank line... 
 	
-	???work??? if "" is first option will ommit banner
+	"" as first option will ommit banner
+
 :

@@ -1,1 +1,0 @@
-query session /server:work

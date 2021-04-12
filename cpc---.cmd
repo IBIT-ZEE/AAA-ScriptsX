@@ -1,1 +1,0 @@
-cpc-search.ps1 %*

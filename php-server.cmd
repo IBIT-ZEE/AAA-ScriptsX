@@ -1,25 +1,4 @@
-Call AAA-Log %0 %*
-
-if "%1"=="" goto     :ERROR
-if not exist %1 goto :ERROR
-
-
-MAIN
-	echo localhost:88
-	cd %1
-	
-	c:\apl\Cygwin64\bin\php.exe -S localhost:88
-	
-	goto :END
-
-:ERROR
-	echo 	Wrong or no web folder to publish...
-
-
-:END
-	echo.
-	echo.
-	
-
-
-
+:: cd C:/DAT/WWW/ZEE-PC
+:: /cygdrivve/c/DAT/WWW/ZEE-PC
+cd /DAT/WWW/ZEE-PC
+start "PHP-Server/ZEE-PC" AAA-LogX php.exe -S 0.0.0.0:81

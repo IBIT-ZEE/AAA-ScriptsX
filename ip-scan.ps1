@@ -5,7 +5,7 @@
 #	3.	
 #
 #
-#	Get-NetIPAddress | Select-Object * |  Out-GridView
+#	Get-NetIPAddress | Out-GridView -passthrough  ???Select-Object *
 #	"10.0.0.0" -split "\."
 #	[System.Net.IPAddress]"10.0.1.1"
 #	[System.Net.IPAddress]
