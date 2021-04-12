@@ -7,6 +7,7 @@ Call AAA-log %0 %*
 	:: call git add --verbose --dry-run . 
 	echo,
 	echo,
+	call aaa-timeout
 	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 60 /d 0
 
 	:: EXIT?
@@ -18,6 +19,7 @@ Call AAA-log %0 %*
 	:: Call git commit --verbose --dry-run -m "%date%-%time%"
 	echo,
 	echo,
+	call aaa-timeout
 	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 60 /d 0
 	
 	:: EXIT?

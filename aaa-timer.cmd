@@ -7,7 +7,7 @@ call AAA-Log %0 %*
 
 
 :MAIN
-	if "%~1"=="" goto :CATCH1
+	if "%~1"=="" goto :CATCH0
 
 	echo %*
 	echo.
@@ -25,9 +25,7 @@ call AAA-Log %0 %*
 
 	
 :CATCH0
-
-
-:CATCH1
+	echo nothing to time...
 
 
 :END
