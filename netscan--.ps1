@@ -26,35 +26,29 @@ $xFiles = File-Get -xFolder $AAA.Folders.ScriptsX -xFilter $xFilter;
 
 # EXTRACT NAMES INTO A ANOTHER ARRAY
 # REMOVE <COMMONNAME>
+# ALSO REMOVE ???- AND ???--  ->  remove -.ps1 + --.ps1
+# $xItems = ( $xFiles | Where-Object { $_ -notin  ".ps1", "-.ps1"  } )
 $xItems = `
 	$xFiles.BaseName.Substring( $xName.Length ) `
 	| Sort-Object `
 	| Select-Object -Last ( $xFiles.Length - 2 );
 
+# GET THE 1ST LETTER HASH/BUCKETS for menu GROUPS
+$xGroups = ( map -xData $xItems -xLambda { $_.Split( '-' )[0] } )
+# $xItems  += @( "Quit" );
+# $xGroups += @("more...");
+$xItems  += "Quit";
+$xGroups += "more...";
 
-# ALSO REMOVE ???- AND ???--  ->  remove -.ps1 + --.ps1
-# $xItems = ( $xFiles | Where-Object { $_ -notin  ".ps1", "-.ps1"  } )
-
-# MENU, MORE...
-$xItems += @( "Quit" );
-
-$xOption = AAA-Menu $xItems
+$xOption = AAA-Menu $xItems $xGroups
 
 # ?QUIT -> Error-Code=1
-if ( $xOption -eq $xItems[-1] ){ exit 1 }
+if ( $xOption -eq $xItems.Length - 1  ){ exit 1 }
 
 
 # SPECIFIC
 ""
-Write-Host $xItems[ $xOption ];
-
-
-
-
-
-
-
-
-
+Start-Process `
+	-FilePath ( "{0}\{1}{2}" -f $AAA.Folders.ScriptsX, $xName, $xItems[ $xOption ] )
 
 
