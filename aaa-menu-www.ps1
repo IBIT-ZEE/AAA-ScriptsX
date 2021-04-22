@@ -17,7 +17,7 @@ Param( $xFile )
 AAA-Log
 
 # Load data file
-$xData = Array-Load ( "{0}\_data\{1}.dat" -f $AAA.Folders.AAA, $xFile );
+$xData = Array-Load ( "{0}\{1}.dat" -f $AAA.Folders.Data, $xFile );
 $xName  = $xData.Name;
 $xGroup = $xData.Group;
 

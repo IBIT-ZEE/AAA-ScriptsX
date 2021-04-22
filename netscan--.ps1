@@ -25,13 +25,11 @@ $xFilter = $xName + "*.*"
 $xFiles = File-Get -xFolder $AAA.Folders.ScriptsX -xFilter $xFilter;
 
 # EXTRACT NAMES INTO A ANOTHER ARRAY
-# REMOVE <COMMONNAME>
-# ALSO REMOVE ???- AND ???--  ->  remove -.ps1 + --.ps1
-# $xItems = ( $xFiles | Where-Object { $_ -notin  ".ps1", "-.ps1"  } )
+#  Remove <nullname>/???- and "-"/???--
 $xItems = `
-	$xFiles.BaseName.Substring( $xName.Length ) `
-	| Sort-Object `
-	| Select-Object -Last ( $xFiles.Length - 2 );
+	$xFiles.BaseName.Substring( $xName.Length ) | `
+	Sort-Object | `
+	Where-Object { $_ -notin "", "-" }
 
 # GET THE 1ST LETTER HASH/BUCKETS for menu GROUPS
 $xGroups = ( map -xData $xItems -xLambda { $_.Split( '-' )[0] } )
