@@ -28,7 +28,7 @@ $xFiles = File-Get -xFolder $AAA.Folders.ScriptsX -xFilter $xFilter;
 #  Remove <nullname>/???- and "-"/???--
 $xItems = `
 	$xFiles.BaseName.Substring( $xName.Length ) | `
-	Sort-Object | `
+	Sort-Object | ` 
 	Where-Object { $_ -notin "", "-" }
 
 # GET THE 1ST LETTER HASH/BUCKETS for menu GROUPS

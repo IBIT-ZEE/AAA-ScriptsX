@@ -12,7 +12,6 @@
 
 
 :MAIN
-	:: if "%~1%~2%~3%~4%~5%~6%~7%~8%~9"=="" goto :CATCH1
 	
 	:: PERMIT %1 AS ""
 	if "%~1"=="" if "%~2"=="" (
@@ -28,8 +27,6 @@
 		if "%%~f"=="" (echo,) else (echo 	%%~f)
 		)
 
-	Call aaa-inshell
-	
 	if ERRORLEVEL 1 goto :CATCH0
 	goto END
 
@@ -38,13 +35,6 @@
 	:: catch no GREP or other command error
 	Call aaa-main "%~f0"
 	echo ERRORLEVEL%errorlevel% ~ %date% * %time% ~ %cd%
-	Timeout 60
-	goto END
-
-
-:CATCH1
-	:: help syntax/*comments/etc.
-	Call aaa-main "%~f0"
 	Timeout 60
 	goto END
 

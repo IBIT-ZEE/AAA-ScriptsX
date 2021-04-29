@@ -1,71 +1,60 @@
 <#
 .SYNOPSIS
+~
+
 Template for AAA *- commands
 Boilerplate/Skeleton for scripts
 Goal : Unify COnsole+GUI+MicroConsole+Languages+Utils+Applications
 
-
-.NOTES
-...
-
+~
 #>
+param( [switch]$verbose )
 
 
-# process Hosts.DBX ???
-$xLocal1 = @( "zee-pc", "zee-lt", "zee-oem" );
-$xLocal2 = @( "server0", "Proxy0", "Work", "WorkX" );
-$xLocal3 = @( "tech0", "tech5", "tech8" );
-$xWWW1   = @( "pinkreef.pt", "7galerias.pt", "bordalima.pt", "cinderela-portugal.pt" );
-$xWWW2   = @( "ibit.softether.net", "ibit-work.softether.net" );
-$xWWW3   = @( "ibit.dynu.net" );
-
-
-$xColor = @{}
-
-function Main () 
+function Main ( $xVerbose ) 
 	{
 	AAA-Log
 
-	Console-Color-Save $xColor;
+	# LAN
+	#	1.	Load Dataset
+	#	2.	Get groups by "group"
+	#	3.	Process ?name-to-IP
+	# Process groups
+	# Process items, if ?<name> use IP
+	$xData   = Array-Load  ( "{0}\LAN.dat" -f $aaa.Folders.data );
+	$xGroups = Array-toHashgroup $xData "Group";
 
-	String-Pad-Center "[LAN/Subnet/Local]" "_";
-	""
-	Go $xLocal1 "ICMP"; String-Replicate "-";
-	Go $xLocal2 "ICMP"; String-Replicate "-";
-	Go $xLocal3 "ICMP";
-	""
+	each $xGroups.Keys `
+		{
+		Write-Host ( String-Pad-Center $_ );
 
-	String-Pad-Center "[WWW]" "_"
-	""
-	Go $xWWW1 "HTTP"; String-Replicate "-";
-	Go $xWWW2 "HTTP"; String-Replicate "-";
-	Go $xWWW3 "HTTP";
-	""
-	# ...
+		# if ?<name> or IP
+		$xDevices = @();
+		foreach( $xGi in $xGroups[ $_ ] )
+			{ 
+			foreach( $xOi in $xGi )
+				{ $xDevices += ( iif ( $xOi.name.head(1) -ne "?" ) $xOi.Name $xOi.IP ); }
+			}
+		
+		Go $xDevices;
 
-	<#
-	String-Pad-Center "[DDNS/*.dynu.net]" "_";
-	Strings-Fit ""
-	Strings-Fit $xDDNS; Strings-Fit ( Go1 $xDDNS ); Strings-Fit ""; Console-Color-Invert;
+		Write-Host ( String-Fit "-" );
+		}
+
 	""
-	# ...
-	Console-Color-Restore $xColor;
-	#>
-	
+	""
 
 	}
 
 
-function Go( $xList, $xProto = "ICMP" ) 
+function Go( [string[]]$xList ) 
 	{ 
 	
-	# Protocol leverage
-	switch ($xProto) 
-		{
-		ICMP { $xCode = { IP-Ping   $args[0] } }
-		HTTP { $xCode = { HTTP-Ping $args[0] } }
-		}
-
+	# for PING/ICMP
+	$xError  = "";
+	$xWarn   = "";
+	$xErrors = "";
+	$xWarns  = "";
 	for( $x = 0; $x -lt $xList.Length; $x++ ) 
 		{ 
 		Write-Progress `
@@ -73,19 +62,60 @@ function Go( $xList, $xProto = "ICMP" )
 			-CurrentOperation $xList[ $x ] `
 			-PercentComplete ( ($x / $xList.length) * 100 );
 
-		String-Edge `
-			-xLeft $xList[ $x ] `
-			-xRight ( GoX -xIn $xList[ $x ]  -xCode $xCode ); 
+		$xGo = `
+			Test-NetConnection `
+				-ComputerName $xList[ $x ] `
+				-ErrorAction SilentlyContinue `
+				-WarningAction SilentlyContinue `
+				-ErrorVariable xError `
+				-WarningVariable xWarn;
+			
+		if( $xError ){ $xErrors += $xError + "`n" }
+		if( $xWarn  ){ $xWarns  += $xWarn  + "`n" }
+
+		if ( $xGo.PingSucceeded ) 
+			{
+
+			$xRight = "{0}/{1}/{2}/{3}" -f `
+				$xGo.SourceAddress.IPAddress,  `
+				$xGo.SourceAddress.InterfaceAlias,  `
+				$xGo.RemoteAddress.IPAddressToString, `
+				( iif $xGo.NameResolutionSucceeded "DNS=OK" "DNS=KO" );
+
+			} 
+		else 
+			{ 
+			$xRight = "<failed>";
+			}
+
+		Write-Host (
+			String-Edge `
+				-xLeft $xList[ $x ] `
+				-xRight $xRight
+				# -xRight ( GoX -xIn $xList[ $x ]  -xCode $xCode )
+				)
 		} 
+
+		# Show Errors/Warnings
+		# Text bring trailing "`n" from previous <error/warn>+"`n"
+		Write-Host
+		if ( $xVerbose -and ( $xErrors -or $xWarns ) )
+			{
+			if ( $xErrors )
+				{
+				Write-Host "*Errors"
+				Write-Host $xErrors;
+				}
+
+			if ( $xWarns )
+				{
+				Write-Host "*Warnings"
+				Write-Host $xWarns;
+				}
+			}
+
 	}
 
-function GoX( $xIn, $xCode )
-	{
-	$x = ( Invoke-Command -ScriptBlock $xCode -ArgumentList $xIn )
-	if ( $x ) { $xResult += $x } else { $xResult += "<failed>"; }
-	return $xResult
-	}
 
-
-
-Main;
+# MAIN
+Main $verbose;

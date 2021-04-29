@@ -1,1 +1,1 @@
-Start /b "IP 10.0.0.0-255" C:\APL\!TOOLS\NirSoft\fastresolver.exe /ipfrom 10.0.0.0 /ipto 10.0.0.255
+Start /b "IP 10.0.0.0/24" C:\APL\!TOOLS\NirSoft\fastresolver.exe /ipfrom 10.0.0.0 /ipto 10.0.0.255
