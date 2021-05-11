@@ -3,7 +3,7 @@ Call AAA-log %0 %*
 
 :INIT
 	Call AAA-Message ^
-		"1. Add all to commit" "" ^
+		"1. Add updated and untracked files to commit" "" ^
 		"2. Create a commit session named '%date%-%time%'" "" ^
 		"3. Upload the changes..."
 
@@ -18,7 +18,8 @@ Call AAA-log %0 %*
 
 	:: EXIT?
 	if errorlevel 2 goto :END
-
+	echo,
+	echo,
 
 	echo [ 2. Create a commit session... ]
 	call git commit --verbose -m "%date%-%time%"
@@ -30,6 +31,8 @@ Call AAA-log %0 %*
 	
 	:: EXIT?
 	if errorlevel 2 goto :END
+	echo,
+	echo,
 
 	:: Exit
 	echo [ 3. Uploading changes... ]
@@ -37,6 +40,8 @@ Call AAA-log %0 %*
 	:: call git push --verbose --dry-run
 	echo,
 	echo,
+	
+	:: just a rememberenace ;-)
 	goto :END
 
 
