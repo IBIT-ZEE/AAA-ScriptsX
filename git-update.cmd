@@ -1,8 +1,14 @@
 Call AAA-log %0 %*
 
 
+:INIT
+	Call AAA-Message ^
+		"1. Add all to commit" "" ^
+		"2. Create a commit session named '%date%-%time%'" "" ^
+		"3. Upload the changes..."
+
 :MAIN
-	echo [ Adding new files to commit... ]
+	echo [ 1. Adding new files to commit... ]
 	call git add --verbose . 
 	:: call git add --verbose --dry-run . 
 	echo,
@@ -14,7 +20,7 @@ Call AAA-log %0 %*
 	if errorlevel 2 goto :END
 
 
-	echo [ Create a commit session... ]
+	echo [ 2. Create a commit session... ]
 	call git commit --verbose -m "%date%-%time%"
 	:: Call git commit --verbose --dry-run -m "%date%-%time%"
 	echo,
@@ -26,7 +32,7 @@ Call AAA-log %0 %*
 	if errorlevel 2 goto :END
 
 	:: Exit
-	echo [ Uploading changes... ]
+	echo [ 3. Uploading changes... ]
 	call git push --verbose
 	:: call git push --verbose --dry-run
 	echo,

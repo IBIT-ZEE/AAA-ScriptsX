@@ -1,1 +1,0 @@
-Thunderbird-Go.ps1
