@@ -1,4 +1,4 @@
-@Call AAA-Log %0 %*
+Call AAA-Log %0 %*
 
 
 if "%~1"=="" AAA-Message "Syntax:" "" "HTTP-Server-PHP <folder-to-serve>"
@@ -13,14 +13,12 @@ if "%~1"=="" AAA-Message "Syntax:" "" "HTTP-Server-PHP <folder-to-serve>"
         echo,
         echo,
 
-		:: use the PHP-Server.lnk to persist HTML-PHP-Server console window settings
-        start "%date%-%time%" PHP-ServerX.lnk -S 0.0.0.0:89 -t %*
+        :: sc query w3svc && net stop w3svc
+        start "%date%-%time%" c:\apl\php64\php.exe -S 0.0.0.0:89 -t %*
         start /b "%date%-%time%" microsoft-edge:http://localhost:89
-		:: @if "%~1"=="" AAA-Message "Syntax:" "" "PHP-Server <folder-to-serve>"		
-		:: sc query w3svc && net stop w3svc
-		:: start "%date%-%time%" c:\apl\php64\php.exe -S 0.0.0.0:89 -t %*
-
 		
+		:: @if "%~1"=="" AAA-Message "Syntax:" "" "PHP-Server <folder-to-serve>"
+		:: @start "%date%-%time%" PHP-Server.lnk -S 0.0.0.0:89 -t %*
 
 
 

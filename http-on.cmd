@@ -1,1 +1,2 @@
-@net start w3svc
+@http-server-php %USERPROFILE%
+::@net start w3svc

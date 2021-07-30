@@ -2,6 +2,12 @@
 
 Filemenu by filter...
 
+
+2DO***
+detect if selected ip exists
+before call the scanner
+
+
 #>
 
 
@@ -12,26 +18,26 @@ AAA-Log
 ""
 ""
 
-# CREATE THE FILTER STRING FROM <SCRIPT-NAME>
-# THIS SCRIPT SHOULD END ALWAYS END IN '--' SO REMOVE LAST '-'
-# CREATE A FILTER-STRING FOR <???-*.*> FILES
+# Create the filter string from <script-name>
+# this script should end always end in '--' so remove last '-'
+# create a filter-string for <???-*.*> files
 $xScript = ( $myInvocation.InvocationName | Split-Path -leafBase )
 $xName   = $xScript.Substring( 0, $xScript.Length - 1 );
 $xFilter = $xName + "*.*"
 
-# GET THE FILTERED FILES 
-# HOLD IN $xFiles YOU MAY NEED A FILE-OBJECT LATER
-# ATT*** ?TEST FOR NONE/$NULL
+# Get the filtered files 
+# hold in $xfiles you may need a file-object later
+# att*** ?test for none/$null
 $xFiles = File-Get -xFolder $AAA.Folders.ScriptsX -xFilter $xFilter;
 
-# EXTRACT NAMES INTO A ANOTHER ARRAY
-#  Remove <nullname>/???- and "-"/???--
+# Extract names into a another array
+# Remove <nullname>/???- and "-"/???--
 $xItems = `
 	$xFiles.BaseName.Substring( $xName.Length ) | `
 	Sort-Object | ` 
 	Where-Object { $_ -notin "", "-" }
 
-# GET THE 1ST LETTER HASH/BUCKETS for menu GROUPS
+# Get the 1st letter hash/buckets for menu groups
 $xGroups = ( map -xData $xItems -xLambda { $_.Split( '-' )[0] } )
 # $xItems  += @( "Quit" );
 # $xGroups += @("more...");

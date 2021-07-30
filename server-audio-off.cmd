@@ -1,1 +1,0 @@
-psexec /user zee-server0 \\server0 taskkill /f /im "wmplayer.exe"

@@ -1,1 +1,2 @@
-aaa-logX ! events 
+@start /b "Event-Log" eventvwr.msc
+
