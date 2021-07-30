@@ -7,15 +7,19 @@ echo   \\       /__\/__\                                                        
 echo    \\//==================================================================\\//
 echo,
 echo,
-if "%~1"=="" aaa-main %~f0
+if "%~1"=="" aaa-main.cmd %~f0
+
 
 :MAIN
 	echo ERRORLEVEL%errorlevel% ~ %date%-%time% ~ %cd% ~ %* >> c:\xxx\!!!!LOGS\aaa-run.log
 	exit /b
+
 
 :OBS
 	aaa-log.cmd
 		Log %errorlevel% ~ %date%-%time% ~ %cd% 
 		and %*
 		to  aaa-run.log in c:\xxx\!!!!LOGS
+
+
 :

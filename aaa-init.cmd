@@ -5,9 +5,6 @@ CALL aaa-log %0 %*
 :: setlocal
 
 :MAIN
-	:: VOLATILE $this-Session
-	for /F %%f in ('hostname') do set aaa-host=%%f
-
 	:: GLOBALS
 	if NOT "%aaa-Env%"=="1" ( Call :VARS )
 	:: setlocal
@@ -43,22 +40,8 @@ CALL aaa-log %0 %*
 
 
 :VARS
-	setx aaa-Env 	1
-	setx aaa-Host 	%aaa-host%
-	setx aaa-Baks 	D:\!!!!BAKS\%aaa-host%
-	setx aaa-Logs 	C:\XXX\!!!!LOGS
-	setx aaa-Tags 	C:\DAT\$kb\aaa-tags.$kb
-	setx aaa-Temp 	C:\XXX\!!!!TEMP
-	setx aaa-Test 	C:\XXX\!!!!TEST
-	setx aaa-Pool 	C:\XXX\!!!!POOL
-	
-	setx aaa-Scripts 	C:\DAT\#Scripts
-	setx aaa-ScriptsX 	C:\DAT\#ScriptsX
-	setx aaa-ScriptsXX 	C:\DAT\#ScriptsXX
-	setx aaa-Links 		C:\DAT\#Links
-	setx aaa-LinksX 	C:\DAT\#LinksX
-	setx aaa-LinksXX 	C:\DAT\#LinksXX
-	
+	Call aaa-vars.cmd
+	:: setx aaa-Baks 	D:\!!!!BAKS\%aaa-host%
 	setx aaa-Timeout	5
 	
 	exit /b 0

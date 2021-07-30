@@ -45,5 +45,6 @@
 	* use AAA-Obs.cmd or AAA-Message.cmd for simpler operations
 
 	p1/1 ~ script name in full-path format ( "%~f0" )
-:
+
+
 :
