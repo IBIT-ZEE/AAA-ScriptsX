@@ -1,0 +1,1 @@
+@bitlocker-cli -status %*

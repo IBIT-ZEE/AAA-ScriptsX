@@ -1,1 +1,1 @@
-AAA-LogX taskkill /f /im %**
+AAA-LogX taskkill /f /im %*

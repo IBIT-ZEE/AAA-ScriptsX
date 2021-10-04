@@ -17,6 +17,7 @@ if "%~1"=="" aaa-main.cmd %~f0
 
 :OBS
 	aaa-log.cmd
+	
 		Log %errorlevel% ~ %date%-%time% ~ %cd% 
 		and %*
 		to  aaa-run.log in c:\xxx\!!!!LOGS

@@ -1,0 +1,1 @@
+@Start /b "Chrome" C:\APL\Google\Chrome64\Application\chrome.exe --proxy=10.0.0.254:1080 --user-data-dir=C:\XXX\Chrome\(all) %*

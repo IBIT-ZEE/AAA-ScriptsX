@@ -21,5 +21,8 @@
 	setx aaa-Links 		C:\DAT\#Links
 	setx aaa-LinksX 	C:\DAT\#LinksX
 	setx aaa-LinksXX 	C:\DAT\#LinksXX
+
+	setx aaa-Execs		"bat cmd ps1 py"
+
 	
 	
