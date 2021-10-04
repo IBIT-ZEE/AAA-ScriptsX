@@ -1,0 +1,1 @@
+@credwiz.exe %*
