@@ -1,9 +1,16 @@
 Call AAA-log %0 %*
 
 :INIT
+	if not exist ".git" (
+		AAA-Message ^
+			"Current folder does not appear to be a git repository..." ^
+			"" ^
+			"no .git folder detected..."
+		)
+
 	Call AAA-Message ^
-		"1. Add updated and untracked files to commit" "" ^
-		"2. Create a commit session named '%date%-%time%'" "" ^
+		"1. Add updated and untracked files to commit" ^ "" ^
+		"2. Create a commit session named '%date%-%time%'" ^ "" ^
 		"3. Upload the changes..."
 
 :MAIN
@@ -36,7 +43,7 @@ Call AAA-log %0 %*
 	
 	echo [ 3. Create a archive/7z... ]
 	for %%f in ( %cd% ) do ( set x=%%~nxf )
-	del %x%.7x
+	del %x%.7z
 	Call 7z a %x%
 	echo,
 	echo,
