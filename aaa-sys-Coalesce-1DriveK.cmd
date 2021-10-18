@@ -24,7 +24,15 @@
 
 :MAIN
 
-	echo 2DO*** registry work & RESTART
+	registry-go HKEY_LOCAL_MACHINE\SYSTEM\MountedDevices
+
+	choice /m "Press:  |>  0=Reboot...  |  1=Exit!  <|  " /c 01 /d 1 /t 60
+	
+	:: if choice was not "0-key" then LOCK
+	if not %errorlevel%==1 ( 
+		shutdown.exe -r -f -t 0
+		goto :END
+		)
 
 	:: <COMMANDS>
 	if ERRORLEVEL 1 goto :CATCH0

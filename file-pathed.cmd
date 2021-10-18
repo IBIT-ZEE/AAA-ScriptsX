@@ -1,3 +1,4 @@
+
 :ENTRY
 	setlocal
 	CALL AAA-LOG %0 %*

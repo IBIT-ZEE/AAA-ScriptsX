@@ -11,7 +11,7 @@
 	:: if self-calling with no <params> to log... 
 	:: then...
 	:: rercursive passing <self> as paramenter
-	if "%1"=="" ( call aaa-log aaa-main.cmd & aaa-main.cmd %~0 )
+	if "%1"=="" ( AAA-Obs.cmd %~0 )
 
 	grep -Poz "\n:OBS\K[\w\W]*?(?=\n:)" %~dpn1.cmd
 	echo,

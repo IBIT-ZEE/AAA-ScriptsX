@@ -7,8 +7,7 @@ echo   \\       /__\/__\                                                        
 echo    \\//==================================================================\\//
 echo,
 echo,
-if "%~1"=="" aaa-main.cmd %~f0
-
+if "%~1"=="" aaa-obs.cmd %~n0
 
 :MAIN
 	echo ERRORLEVEL%errorlevel% ~ %date%-%time% ~ %cd% ~ %* >> c:\xxx\!!!!LOGS\aaa-run.log

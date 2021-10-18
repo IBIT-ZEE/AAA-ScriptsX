@@ -1,6 +1,5 @@
 Call AAA-log %0 %*
 
-
 :INIT
 	Call AAA-Message ^
 		"1. Add updated and untracked files to commit" "" ^
@@ -8,15 +7,16 @@ Call AAA-log %0 %*
 		"3. Upload the changes..."
 
 :MAIN
+	setlocal
 	echo [ 1. Adding new files to commit... ]
 	call git add --verbose . 
 	:: call git add --verbose --dry-run . 
 	echo,
 	echo,
-	call aaa-timeout
-	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 60 /d 0
 
-	:: EXIT?
+	:: EXIT?	
+	call aaa-timeout 10
+	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 10 /d 0
 	if errorlevel 2 goto :END
 	echo,
 	echo,
@@ -26,26 +26,40 @@ Call AAA-log %0 %*
 	:: Call git commit --verbose --dry-run -m "%date%-%time%"
 	echo,
 	echo,
-	call aaa-timeout
-	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 60 /d 0
-	
+
 	:: EXIT?
+	call aaa-timeout 10
+	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 10 /d 0
 	if errorlevel 2 goto :END
 	echo,
 	echo,
+	
+	echo [ 3. Create a archive/7z... ]
+	for %%f in ( %cd% ) do ( set x=%%~nxf )
+	7z a %x%
+	echo,
+	echo,
+	
+	:: EXIT?
+	call aaa-timeout 10
+	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 10 /d 0
+	if errorlevel 2 goto :END
+	echo,
+	echo,
+	
 
 	:: Exit
-	echo [ 3. Uploading changes... ]
+	echo [ 4. Uploading changes... ]
 	call git push --verbose
 	:: call git push --verbose --dry-run
 	echo,
 	echo,
-	
 	:: just a rememberenace ;-)
 	goto :END
 
 
 :END
+	endlocal
 	echo,
 	echo,
 

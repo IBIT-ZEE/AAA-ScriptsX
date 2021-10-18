@@ -1,0 +1,1 @@
+@route -f print %*
