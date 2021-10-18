@@ -15,7 +15,7 @@ Call AAA-log %0 %*
 	echo,
 
 	:: EXIT?	
-	call aaa-timeout 10
+	call aaa-timeout 60
 	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 10 /d 0
 	if errorlevel 2 goto :END
 	echo,
@@ -28,7 +28,7 @@ Call AAA-log %0 %*
 	echo,
 
 	:: EXIT?
-	call aaa-timeout 10
+	call aaa-timeout 60
 	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 10 /d 0
 	if errorlevel 2 goto :END
 	echo,
@@ -36,12 +36,12 @@ Call AAA-log %0 %*
 	
 	echo [ 3. Create a archive/7z... ]
 	for %%f in ( %cd% ) do ( set x=%%~nxf )
-	7z a %x%
+	Call 7z a %x%
 	echo,
 	echo,
 	
 	:: EXIT?
-	call aaa-timeout 10
+	call aaa-timeout 60
 	choice /m "[ 1=OK | 0=Exit ]" /c 10 /n /t 10 /d 0
 	if errorlevel 2 goto :END
 	echo,
