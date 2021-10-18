@@ -36,6 +36,7 @@ Call AAA-log %0 %*
 	
 	echo [ 3. Create a archive/7z... ]
 	for %%f in ( %cd% ) do ( set x=%%~nxf )
+	del %x%.7x
 	Call 7z a %x%
 	echo,
 	echo,
