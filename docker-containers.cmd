@@ -1,1 +1,1 @@
-docker.exe ps --all
+@docker.exe ps -all

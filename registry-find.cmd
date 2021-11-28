@@ -1,24 +1,27 @@
-
 Call AAA-Log %0 %*
 
-if "%~1"=="" AAA-Message ^
-	"Registry-Find <string>" ^
-	"" ^
-	"Search..."
 
+:MAIN
+	if "%~1"=="" ( AAA-Obs %0 )
 
-:: [ HKLM | HKCU | HKCR | HKU | HKCC ]
+	for %%f in ( HKLM HKCU HKCR HKU HKCC ) do (
+		echo [%%f]
+		reg.exe QUERY %%f /s /f %1
+		echo,
+		echo,
+		)
 
-for %%f in ( HKLM HKCU HKCR HKU HKCC ) do (
-	echo [%%f]
-	reg.exe QUERY %%f /s /f %1
 	echo,
 	echo,
-	)
+	exit /b
 
 
-echo,
-echo,
 
+:Obs
+	Syntax:
+	
+		Registry-Find <string>
 
+	Search hives for supplied data
+	>Registry-Hives
 

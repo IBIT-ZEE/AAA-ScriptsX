@@ -1,1 +1,1 @@
-docker.exe images %*
+@docker.exe images %*

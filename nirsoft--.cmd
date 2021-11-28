@@ -1,11 +1,13 @@
-Call aaa-log %0 %1
+Call aaa-log %0 %*
 
-if not defined aaa-scriptsX ( 
-	AAA-Message "AAA-Scripts variable not defined..." ^
-	&& set aaa-
-	)
+:MAIN
+	if not defined aaa-scriptsX ( 
+		AAA-Message "AAA-Scripts variable not defined..." ^
+		&& set aaa-
+		)
 
-setlocal
-set x=%~n0
-dir /b %aaa-scriptsX%\%x:~,-1%*-.*
-endlocal
+	setlocal
+	set x=%~n0
+	dir /b %aaa-scriptsX%\%x:~,-1%*-.*
+	endlocal
+

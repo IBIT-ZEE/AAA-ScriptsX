@@ -44,7 +44,10 @@ if ( $null -eq $xRoot )
 
 # get all files in the naming form of <root>-*
 # if no files got Alert & Exit
-$xFiles = Get-ChildItem $aaa.Folders.ScriptsX -Filter "$xRoot-*";
+$xFiles = `
+	Get-ChildItem `
+		-path $aaa.Folders.ScriptsX, $aaa.Folders.ScriptsXX `
+		-Filter "$xRoot-*";
 
 if ( isNull( $xFiles ) )
 	{

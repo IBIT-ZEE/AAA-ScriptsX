@@ -2,7 +2,7 @@
 
 setlocal
 set x=%~n0
-aaa-menu-scripts %x:~,-3%
+aaa-menu-scripts %x:~,-2%
 endlocal
 
 

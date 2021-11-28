@@ -1,1 +1,1 @@
-AAA-LogX netstat -ano|grep :22
+@AAA-LogX netstat -ano|grep :22

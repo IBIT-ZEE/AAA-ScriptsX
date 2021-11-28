@@ -1,6 +1,6 @@
 :ENTRY
 	setlocal
-	CALL IBIT_LOG %0 %*
+	CALL AAA-Log %0 %*
 	if "%~1"=="" goto :MAIN
 	goto :MAINX
 
@@ -17,7 +17,8 @@
 
 
 :MAIN
-	grep -Poz "^:TEXT1\K[\w\W]*?(?=^:$)" %~f0
+	AAA-Obs %0
+	:: grep -Poz "^:TEXT1\K[\w\W]*?(?=^:$)" %~f0
 	if ERRORLEVEL 1 goto :CATCH0
 	goto :END
 
@@ -77,7 +78,9 @@
 
 An error has occured
 
-:TEXT1
+
+
+:OBS
 
 	TCP-Capture-*
 	* uses TShark, TCPDump, etc.

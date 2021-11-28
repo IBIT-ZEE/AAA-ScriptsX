@@ -25,7 +25,7 @@ function Main
 			"*" `
 		)
 
-	$xData = Array-Load ( $AAA.Folders.AAA + "\_data\vm-go.dat" );
+	$xData = Array-Load ( $AAA.Folders.AAA + "\data\vm-go.dat" );
 
 	# CHOOSE VM
 	String-Line;

@@ -8,10 +8,10 @@ Goal : Unify COnsole+GUI+MicroConsole+Languages+Utils+Applications
 
 ~
 #>
-param( [switch]$verbose )
+param( [string]$xFile, [switch]$xVerbose )
 
 
-function Main ( $xVerbose ) 
+function Main ( [string]$xFile,  [switch]$xVerbose ) 
 	{
 	AAA-Log
 
@@ -21,7 +21,15 @@ function Main ( $xVerbose )
 	#	3.	Process ?name-to-IP
 	# Process groups
 	# Process items, if ?<name> use IP
-	$xData   = Array-Load  ( "{0}\LAN.dat" -f $aaa.Folders.data );
+	$xFile   = "{0}\{1}.dat" -f $aaa.Folders.data, $xFile
+	if ( -not ( File-Exist -xFile $xFile) )
+		{
+		AAA-Message -xData "", "Sintaxe:", "IP-Pinger -xFile <file> [ -xVerbose/switch ]", "", $xFile, "Não encontrado...", "";
+		Sound-Beep;
+		Return $null;
+		}
+
+	$xData   = Array-Load  ( $xFile );
 	$xGroups = Array-toHashgroup $xData "Group";
 
 	each $xGroups.Keys `
@@ -118,4 +126,4 @@ function Go( [string[]]$xList )
 
 
 # MAIN
-Main $verbose;
+Main -xFile $xFile -xVerbose $xVerbose;

@@ -5,5 +5,4 @@
 
 
 AAA-log
-AAA-Script-ListX "-"
-
+AAA-Script-List

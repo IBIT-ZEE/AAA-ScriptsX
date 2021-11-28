@@ -3,29 +3,23 @@
 
 use:
 
-	git-init
-	to initialize a git repository in current folder (context)
+	AAA
+	===
+	git-init	to initialize a git repository in current folder (context)
+	git-state	to check the current context state
+	git-status	to check the internal variables	system/global/local
+	git-update	to update the remote repository of the current context
 	
-	git-state
-	to check the current context state
+	git-tracked	files beeing tracked
+	git-staged	staged files for next update
 	
-	git-status
-	to check the internal variables
-	system/global/local
-	
-	git-update
-	to update the remote repository of the current context
 	>git add ...
 	>git commit ...
 	>git push ...
 	using --verbose 
 	
-	git-config
-	to edit the default .gitconfig file
-	relying on $home/%USERPROFILE%
-	
-	git-editor
-	to check/change the default editor
+	git-config	to edit the default .gitconfig file	($home/%USERPROFILE%)
+	git-editor	to check/change the default editor
 
 	* CREDENTIALS
 	git account passwords will be saved in plain text 

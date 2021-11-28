@@ -1,1 +1,1 @@
-docker.exe version
+docker version

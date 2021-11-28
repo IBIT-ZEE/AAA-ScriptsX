@@ -21,12 +21,14 @@ if "%~1"=="" aaa-main %~f0
 
 	exit /b
 
-:OBS
+
+:obs
 	aaa-logX.cmd
 	
 	log  ->  %errorlevel% ~ %date%-%time% ~ %cd% 
 	and  ->  %*
 	to   ->  aaa-run.log at c:\xxx\!!!!LOGS
 	then ->  %* invoke
-:
 
+
+:

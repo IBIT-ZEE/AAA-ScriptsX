@@ -33,7 +33,7 @@ Param( $xMac, $xIP, $xGW, $xName = "NIC/L3=$xIP/L2=$xMac" )
 
 AAA-Logo
 
-if ( [string]::IsNullOrEmpty( $args + $xMac + $xIP + $xGW ) )
+if ( -not ($xMac -and $xIP -and $xGW -and $args) )
 	{
 	AAA-Message "", "Route-Changer <MAC> <IP-Address> <IP-Gateway> <IF-Name>", ""
 	Exit 1
