@@ -1,5 +1,6 @@
-Call AAA-Log %0 %*
+::Call AAA-Log %0 %*
 
+@echo off
 setlocal
 
 :CHECKUP
@@ -9,14 +10,15 @@ setlocal
 	set xFile="%~1"
 
 	:: ?argumented start-of-chunk label valid??
-	:: default TEXT-CHUNK for ani script is OBS
+	:: default TEXT-CHUNK for any script is OBS
 	if "%~2"=="" %0 %1 OBS
-	set xLabel-Start=:%~2
+	set xLabel-Start=:%~2\r\n
 
 	:: ???default this argument???
 	:: ?argumented end-of-chunk label valid??/OPTIONAL
-	if "%~3"=="" (set xLabel-End=\Z) else (set xLabel-End=:%~3)
+	if "%~3"=="" (set xLabel-End=\Z) else (set xLabel-End=:%~3\r\n)
 	goto :MAIN
+
 
 :DEBUG
 	echo %xRE%
@@ -25,10 +27,11 @@ setlocal
 	echo %xLabel-End\%
 	goto :END
 
+
 :MAIN
 	set xRE="\n%xLabel-Start%\K[\w\W]*?(?=%xLabel-End%)"
 	:: grep -Poz "\n:OBS\K[\w\W]*?(?=\n:)" %~dpn1.cmd
-	grep -Pozi %xRE% %xFile%
+	call grep -Pozi %xRE% %xFile%
 	:: GOTO DEBUG
 	goto :END
 
@@ -41,8 +44,11 @@ setlocal
 
 
 :OBS
-	aaa-text-chunk <file> <label-start> [<label-end>]
 
+	 _/\_
+	 \[]/	|> Text-Chunk <file> <label-start> [<label-end>]
+	/_\/_\
+	
 	Get a Chunk of text from file
 	beginning at passed <label-start>
 	up to <label-end> or <EOF>

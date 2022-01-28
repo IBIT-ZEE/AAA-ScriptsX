@@ -1,1 +1,0 @@
-dtdns-update.cmd 

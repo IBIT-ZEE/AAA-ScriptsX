@@ -1,1 +1,5 @@
-@wmic service get name,status,state
+@wmic ^
+	service ^
+		where (name like '%%%~1%%' ) ^
+		get name, processid, servicetype
+

@@ -1,44 +1,34 @@
-:ENTRY
-	CALL IBIT_Log %0 %1
-
-	
-:INITIALIZE
-
-	
-:BEGIN
+@call AAA-Log %0 %*
 
 
 :MAIN
-	cd /d "C:\dat\#Scripts"
-	for %%a in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do (
-	echo [%%a]
-	for %%b in (%%a*) do echo %%b
-	echo.
-	)
-	goto END
-
-
-:ERR_SYNTAX
-	grep -Pzo "^:Syntax\K[\w\W]*" %~f0
-	goto END
+	if "%~1"=="-?" ( AAA-Obs %0 )
 	
+	call AAA-Vars CHECK
+	cd /d %AAA-Scripts%
+	
+	for %%a in ( A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ) do (
+		echo [%%a]
+		for %%b in (%%a*) do echo %%b
+		echo.
+		)
+	
+	goto END
+
+
 :END
 	echo. 
 	echo.
+	exit /b
 
-:FINALIZE
 
+
+
+:OBS
+
+	SCRIPTS-*
 	
-:EXIT
-	Exit /b
-
-
-
-
-:Syntax
-
-SCRIPTS-*
-	Folder ____ Open folder 
-	FolderX ___ Open folder extended
+		Folder ____ Open folder 
+		FolderX ___ Open folder extended
 
 

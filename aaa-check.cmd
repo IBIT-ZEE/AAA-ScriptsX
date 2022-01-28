@@ -20,8 +20,7 @@
 
 
 :MAIN
-	Call aaa-main "%~f0"
-	exit /b
+	AAA-Obs %~0
 	
 	if ERRORLEVEL 1 goto :CATCH0
 	goto END
@@ -49,12 +48,8 @@
 	exit /b
 
 
-:OBS0
-	
-	Obs...
-
-
-:TEXT0
+:OBS
+2DO***
 
 	ALIAS check
 	Check systems local/remote on start
@@ -65,10 +60,3 @@
 	by PowerShell remote
 	
 	
-	
-
-:ERROR0
-
-	An error has occured/0
-
-:

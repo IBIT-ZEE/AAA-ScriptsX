@@ -7,16 +7,16 @@
 AAA-Log
 
 # Files
-$xDB =  $AAA.Folders.Data + "\radios-random.dat";
+$xFile =  $AAA.Folders.Data + "\radios-random.dat";
 $xWMP = "${Env:ProgramFiles(x86)}\Windows Media Player\wmplayer.exe";
 
 # Load table
-$xRadios = Array-Load $xDB;
+$xList = List-Load $xFile;
 
 # Pick a item/id+url
-$x = Get-Random -Minimum 0 -Maximum $xRadios.Count;
-$xID  = $xRadios[ $x ].ID;
-$xURL = $xRadios[ $x ].URL;
+$x = Get-Random -Minimum 0 -Maximum $xList.Count;
+$xID  = $xList[ $x ].ID;
+$xURL = $xList[ $x ].URL;
 
 ""
 AAA-Alert '', $xID, $xURL, ''

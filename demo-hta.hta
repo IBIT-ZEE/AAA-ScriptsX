@@ -1,0 +1,85 @@
+
+<style>
+
+	html { background: #ABCDEF; border: 0; margin: 0; }
+
+	#xHead  { background: #cccccc; height: 10%; }
+	#xMain  { background: #dddddd; height: 80%; }
+	#xFoot  { background: #eeeeee; height: 10%; }
+
+	#xForm  { background: #bbbbbb; border: 1%; margin: 1%; padding: 1%; }
+	#xConsole { background: #aaaaaa; border: 1ex; margin: 1ex; padding: 1ex; }
+
+</style>
+
+
+<html>
+	<head>
+	<hta:application id="xApp" />
+	<title>AAA/Demo HTA</title>
+	
+	</head>
+
+	<body>
+		<div id="xHead">
+			---Top
+		</div>
+		
+		<div id="xMain">
+			<h2>hello world!!!</h2>
+			
+			<div id=xForm>
+				<input id="i1" type=text />
+				<input id="i2" type=text lines=11 cols=22 />
+				<input id="i3" type=button value="Click me..." onclick="f2()" />
+			</div>
+			
+			<hr/>
+			<pre id="xConsole">
+			</pre>
+			
+		</div>
+		
+		<div id="xFoot">
+			---Bottom
+		</div>
+	</body>
+	
+</html>
+
+
+<script>
+	// alert( "AAA!" )
+	
+	function window.onload(){ f1() }
+
+	function f1()
+		{
+		x =
+		"applicationName  = " + xApp.applicationName + "\n" + 
+		"border           = " + xApp.border          + "\n" +
+		"borderStyle      = " + xApp.borderStyle     + "\n" + 
+		"caption          = " + xApp.caption         + "\n" +
+		"commandLine      = " + xApp.commandLine     + "\n" +
+		"icon             = " + xApp.icon            + "\n" +
+		"maximizeButton   = " + xApp.maximizeButton  + "\n" +
+		"minimizeButton   = " + xApp.minimizeButton  + "\n" + 
+		"showInTaskBar    = " + xApp.showInTaskbar   + "\n" +
+		"singleInstance   = " + xApp.singleInstance  + "\n" +  
+		"sysMenu          = " + xApp.sysMenu         + "\n" + 
+		"version          = " + xApp.version         + "\n" + 
+		"windowState      = " + xApp.windowState     + "\n" ;
+
+		xConsole.innerText = x;
+		}
+
+	function f2()
+		{
+		}
+
+</script>
+
+
+
+
+

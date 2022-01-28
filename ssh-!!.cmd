@@ -1,1 +1,1 @@
-@cd /d C:\Users\ZEEX\.ssh
+@cd /d %USERPROFILE%\.ssh

@@ -6,6 +6,7 @@
 	echo,
 	echo,
 
+
 :MAIN
 	echo ^|	Backup/7z C:\DAT -to- %AAA-BAKS%
 	echo ^|
@@ -17,11 +18,17 @@
 	
 	echo,
 	echo,
-	:: PRESERVE LAST BACKUP IF EXIST
-	del %AAA-BAKS%\DAT.7z.~
-	ren %AAA-BAKS%\DAT.7z *.7z.~ 
+	:: PRESERVE PREVIOUS BACKUP IF EXIST
+	if exist %AAA-BAKS%\DAT.7z (
+		del %AAA-BAKS%\DAT.7z.~
+		ren %AAA-BAKS%\DAT.7z *.7z.~ 
+		)
 
-	c:\APL\!TOOLS\_APPLETS\7Zip64\7z.exe a %AAA-BAKS%\DAT" c:\dat
+	:: check if the command is available (OR EXIT)
+	:: if availble then archive
+	Call File-Check 7z.cmd
+	Call 7z.cmd a "%AAA-BAKS%\DAT" c:\dat
+
 
 :END
 	echo,

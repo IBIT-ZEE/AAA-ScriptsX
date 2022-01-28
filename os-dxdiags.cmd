@@ -1,1 +1,0 @@
-dxdiags.exe %*

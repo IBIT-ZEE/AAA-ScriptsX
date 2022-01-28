@@ -20,9 +20,6 @@ if "%~1"=="" AAA-Message "Syntax:" "" "HTTP-Server-PHP <folder-to-serve>"
 		:: sc query w3svc && net stop w3svc
 		:: start "%date%-%time%" c:\apl\php64\php.exe -S 0.0.0.0:89 -t %*
 
-		
-
-
 
 :END
         echo,

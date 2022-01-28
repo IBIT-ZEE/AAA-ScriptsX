@@ -1,0 +1,27 @@
+
+
+// AAA/2022/ZEE
+
+
+WScript.echo( "AAA/VBScript test..." );
+WScript.echo( "\n\n" );
+
+for ( f=0; f < 11; f++ )
+	{
+	WScript.echo( "AAA -js- ", f );
+	}
+
+
+// ?how to exit
+// return( 0 )
+// WScript.Exit( 0 );
+
+
+/*
+
+:OBS
+
+	Whatever...
+
+
+*/

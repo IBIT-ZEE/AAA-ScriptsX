@@ -20,10 +20,11 @@
 	
 	Samples: (2021.11.04/...)
 	
-	mkv-extract "foundation.s01e06.repack.1080p.web.h264-cakes.mkv" tracks 33:6.srt
-	mkv-extract "foundation.s01e07.1080p.web.h264-cakes.mkv"        tracks 33:7.srt
-	
-	...
+	mkv-extract
+		"foundation  ???.mkv"           tracks 33:x.srt
+		"The.Expanse ???.mkv"           tracks 26:x.srt
+		"The book of Boba Fett ???.mkv" tracks 16:x.srt
+		...
 
 
 

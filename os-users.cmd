@@ -1,1 +1,1 @@
-C:\Windows\System32\query.exe user
+@AAA-Message "Use:" "" "User-"

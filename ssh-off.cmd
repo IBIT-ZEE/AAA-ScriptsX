@@ -1,1 +1,2 @@
-AAA-LogX net stop sshd
+@net.exe stop sshd
+Call ssh-state
