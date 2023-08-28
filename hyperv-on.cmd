@@ -1,1 +1,1 @@
-net start vmcompute
+@hyperv-class ON %*

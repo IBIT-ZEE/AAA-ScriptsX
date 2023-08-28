@@ -4,33 +4,28 @@
 :ENTRY
 	setlocal
 	
-	set xExts=cmd cs csh ps1 py perl vbs
+	set xExts=awk cmd cs csh ps1 py perl vbs
 
 	if "%1"=="" ( 
-		AAA-Message ^
-			"Use:" ^
-			"" ^
-			"Code <script>" ^
-			"" ^
-			"View code from scripts in AAA-Ecosystem..." ^
-			"Code is aware of : .%xExts: =|.%"
-
+		call AAA-Obs %0
+		echo 	code is aware of:
+		echo,
+		echo 		%xExts%
+		goto :END
 		)
 	
 
 	:: QUIRK*** if not defined was failling... 
 	:: so... test for defined as it works
 	:: if not defined AAA-Env AAA-Message "AAA-Vars missing, need AAA-Env..." 
-	if defined AAA-Env goto :MAIN
-
+	if defined AAA- goto :MAIN
 	AAA-Message "AAA-Vars missing, need AAA-Env..."
-	
 	goto :END
 
 
 :MAIN
 
-	for %%f in ( %AAA-Scripts% %AAA-ScriptsX% %AAA-ScriptsXX% ) do (
+	for %%f in ( %AAA-#% %AAA-Scripts% %AAA-ScriptsX% %AAA-ScriptsXX% ) do (
 		:: ?EXACT FILENAME !EXIT -aka- extension was supplied...
 		if exist %%f\%1 ( set x=%%f\%1 && goto :GO )
 
@@ -58,5 +53,18 @@
 	endlocal
 	echo,
 	echo,
+	exit /b
 
 
+:OBS
+>codex
+>codexx
+>scripts-
+
+
+	Use:
+	
+		Code <script>
+
+
+	View code from scripts in AAA-Ecosystem...

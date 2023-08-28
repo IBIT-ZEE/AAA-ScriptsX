@@ -1,0 +1,1 @@
+@hyperv-host.cmd %*

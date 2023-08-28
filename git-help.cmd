@@ -1,25 +1,38 @@
-@( AAA-Log %0 & type %~f0 )
+call AAA-Log %0 %*
 
 
-use:
+:MAIN
+	if "%1"=="" ( AAA-Obs %0 )
+	exit /b
 
-	AAA
-	===
-	git-init	to initialize a git repository in current folder (context)
-	git-state	to check the current context state
-	git-status	to check the internal variables	system/global/local
-	git-update	to update the remote repository of the current context
+
+:OBS
+>git-
+>git-list
+>git-add
+>git-commit
+>git-push
+
+	Git
+
+	Syntax:
 	
-	git-tracked	files beeing tracked
-	git-staged	staged files for next update
+		git-*
+
+	-init		to initialize a git repository in current folder (context)
+	-list		list changes
+	-state		?same as list
+	-status		show git system properties
+	-staged		list staged files for next update
 	
-	>git add ...
-	>git commit ...
-	>git push ...
+	-add		add all non staged files
+	-update		to update the remote repository of the current context
+	-tracked	files beeing tracked
+	
 	using --verbose 
-	
-	git-config	to edit the default .gitconfig file	($home/%USERPROFILE%)
-	git-editor	to check/change the default editor
+
+	-config	to edit the default .gitconfig file	($home/%USERPROFILE%)
+	-editor	to check/change the default editor
 
 	* CREDENTIALS
 	git account passwords will be saved in plain text 

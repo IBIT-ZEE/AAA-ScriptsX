@@ -5,6 +5,20 @@
 
 
 AAA-Log
+
+@"
+
+
+>hyperv-
+>qemu-
+>virtualbox-
+
+"@
+
 AAA-Script-List
 
+
+@"
+
+"@
 

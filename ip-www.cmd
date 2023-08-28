@@ -1,1 +1,1 @@
-@start "IP-WWW/Public" "http://omeuip.pt"
+@start "IP-WWW/Public" "http://canyouseeme.org"

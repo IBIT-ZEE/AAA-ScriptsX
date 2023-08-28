@@ -31,7 +31,8 @@ setlocal
 :MAIN
 	set xRE="\n%xLabel-Start%\K[\w\W]*?(?=%xLabel-End%)"
 	:: grep -Poz "\n:OBS\K[\w\W]*?(?=\n:)" %~dpn1.cmd
-	call grep -Pozi %xRE% %xFile%
+	:: call grep.cmd -Pozi %xRE% %xFile%
+	@C:\APL\!TOOLS\____CLI\Cygwin64\grep.exe -Pozi %xRE% %xFile%
 	:: GOTO DEBUG
 	goto :END
 

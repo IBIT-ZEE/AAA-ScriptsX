@@ -5,6 +5,16 @@
 
 
 AAA-Log
-AAA-Script-List
 
+@"
+>ARP
+>LAN-
+>NET-
+>WAN-
+>WWW-
+
+
+"@
+
+AAA-Script-List
 

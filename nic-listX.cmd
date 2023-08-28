@@ -1,2 +1,12 @@
-@wmic.exe nicconfig where "Description like '%%%1%%'" get * /format:value
 
+
+:MAIN
+	@echo off
+	wmic.exe nicconfig get Description, InterfaceIndex, MacAddress
+	exit /b
+
+
+
+:OBS
+
+//

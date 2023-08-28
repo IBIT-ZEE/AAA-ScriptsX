@@ -1,0 +1,1 @@
+@start /b "Antena2" "C:\Program Files (x86)\Windows Media Player\wmplayer.exe" http://radiocast.rtp.pt/antena280a.mp3

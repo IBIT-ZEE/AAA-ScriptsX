@@ -4,11 +4,11 @@ AAA-Obs %0
 
 :Obs
 
-	Importa uma instancia WSL em formato POSIX/TAR
-	de uma anterior exportação:
+	Importar uma instancia WSL em formato POSIX/TAR
+	(resultado de uma anterior exportação)
 
 	~ wsl.exe --import <name> <destination-folder> <file.tar.gz>
-	~ wsl.exe --import Kali "C:\XXX\{vm}\WSL\Kali" "C:\XXX\WSL\aaa-kali.tar.gz"
+	~ wsl.exe --import Kali "C:\SYS\Kali" "C:\XXX\WSL\aaa-kali.tar.gz"
 
 	~ wsl.exe ^
 		--import docker-desktop ^

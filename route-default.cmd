@@ -1,40 +1,74 @@
-AAA-Obs %0
+call AAA-Log %0 %*
+
+
+:MAIN
+	if /i  "%~1"=="-?"   AAA-Obs %0
+	if /i  "%~1"=="OFF" goto :ROUTE~
+	if /i  "%~1"=="ON"  goto :ROUTE!
+	if NOT "%~1"==""    goto :ROUTEX
+
+:MAINX
+	:: default behaviour for no parameters
+	:: just show pre-defined default routes
+	echo Current default route is:
+	echo,
+	
+	@route print | grepx "^\s\+0\.0\.0\.0"
+	
+	echo,
+	echo 	-? for help
+	goto :END
+
+
+:ROUTE~
+	echo Erasing default routes...
+	route.exe delete 0.0.0.0
+	goto :END
+
+
+:ROUTE!
+	:: recurse with /default/ parameters
+	"%~f0" !
+	goto :END
+
+
+:ROUTEX
+	call AAA-Ecosystem CHECK
+	
+	if NOT exist %AAA-ScriptsXX%\me-route-%1.cmd (
+		echo 	me-route-%1 script not found...
+		goto :END
+		)
+	
+	me-route-%1
+
+	goto :END
+
+
+:END
+	echo,
+	echo,
+	exit /b
 
 
 :OBS
-	******************
-	Add default routes
-	******************
-
-	ATT*** if nameservice is need use also DNS-...
-
-	================
-	on routing-table
-	----------------
-	route-delete ...
-	route-add    ...
+>route-
+>me-
+>me-route-*
 
 
-	======
-	on NIC
-	------
-	netsh interface ipv4 set address 'LAN1' static 10.0.1.108 255.0.0.0 none
+	Syntax:
+	
+		route-default <option>
+	
+		<none> ... Show defined default routes
+		<code> ... Activate route if exists ( me-route-<?> )
+			
+		-? ....... This information
+		-On ...... Activate default if exists ( me-route-! )
+		-Off ..... Deactivate all default routes
 
 
-	*********************
-	Remove default routes
-	*********************
-
-	================
-	on routing-table
-	----------------
-	route delete -p 0.0.0.0
-
-
-	======
-	on NIC
-	------
-	netsh interface ipv4 set address "LAN1" static 10.0.1.108 255.0.0.0 none
-
-
-
+	* show current default-route/gateway
+	* or set a predefined route in me-route-*
+	* alias gw/gateway

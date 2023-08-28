@@ -1,0 +1,1 @@
+@"C:\Program Files (x86)\Windows Media Player\wmplayer.exe" http://tsfdirecto.tsf.pt/tsfdirecto.mp3

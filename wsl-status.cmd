@@ -1,1 +1,1 @@
-@wsl.exe --status
+@wsl--- status

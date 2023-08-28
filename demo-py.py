@@ -1,25 +1,26 @@
 
-:MAIN
-	AAA-Obs %0
+# comment
+#
 
+class c0:
+	a=1
+	b=22
+	c=333
 
+	def go( self ):
+		print( self.a + self.b + self.c );
+	
+	def gox():
+		pass;
 
-:OBS
+o1 = c0();
 
-	Proof-of-Concept demo scripts
-	Convention-over-Configuration
+a = 1;
+b = 22;
+c = 333;
 
-	AAA-Check will check for ecosystem
-	(environment + interpreters + ... )
-
-	demo-cm .... Command/Batch .cmd/.bat demo
-	demo-ps .... Powershell
-	demo-c# .... C#/Roslyn interpreter
-	demo-py .... Python demo
-	demo-js .... Javascript Deno/Node/JScript/...
-	demo-ht .... HTML/AJAX demo-cm
-	demo-vs .... VBScript
-	demo-cs .... CScript
-	demo-lua ... Lua
-
+print( "Python demo..." );
+print( a + b + c );
+print( o1.go() );
+print( "\n\n" );
 

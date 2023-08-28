@@ -1,1 +1,1 @@
-net stop vmcompute
+@hyperv-class OFF %*

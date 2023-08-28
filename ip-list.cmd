@@ -1,11 +1,18 @@
 
 
 :MAIN
-	@if "%~1"=="" ( call AAA-Log %0 ) else ( echo off )
-	netsh interface ip show config %1
-
-	:: if "%~1"=="" ( call text-chunk %~dpnx0 OBSX OBS )
-	if "%~1"=="" ( call AAA-Obs %0 - )
+	@echo off
+	if "%~1"=="" %0 "*"
+	::if "%~1"=="" ( AAA-Obs %0 - )
+	::if "%~1"=="" ( call AAA-Log %0 ) else ( echo off )
+	::if "%~1"=="" ( call text-chunk %~dpnx0 OBSX OBS )
+	
+	setlocal
+	set x=
+	if NOT "%~1"=="*" ( set x=%1 )
+	netsh interface ip show config %x%
+	AAA-Obs %0 -
+	endlocal
 
 	goto :END
 
@@ -17,7 +24,10 @@
 
 
 :OBS
-	AAA/ATT***
-	IPs and associated NIC information...
-	* pass NIC name as a filter argument
+>net-
+>nic-
+>lan-
 
+	Syntax:
+		ip-list *
+		ip-list <nic-name>

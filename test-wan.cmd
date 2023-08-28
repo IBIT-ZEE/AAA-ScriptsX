@@ -1,0 +1,1 @@
+@wan-test.cmd %*

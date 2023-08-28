@@ -1,0 +1,1 @@
+clipboard-add.ps1 %*

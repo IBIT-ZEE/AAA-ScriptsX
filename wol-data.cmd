@@ -1,1 +1,1 @@
-edit c:\DAT\AAA\Data\wol-go.dat
+type c:\DAT\AAA\Data\wol-go.dat

@@ -5,5 +5,11 @@
 
 
 AAA-log
-AAA-Script-ListX "-"
+
+"
+Special case for scripts beggining with -*
+for ending in *- use the standard - and --
+"
+
+AAA-Script-List "-"
 

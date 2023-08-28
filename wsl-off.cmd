@@ -1,1 +1,1 @@
-wsl.exe --shutdown
+@wsl--- off

@@ -1,1 +1,0 @@
-file-path.cmd %* |clip

@@ -2,7 +2,7 @@ Call AAA-Log %0 %*
 
 :MAIN
 	echo ?service -------------------------------
-	sc queryex state= all | grep -A11 -i sshd
+	sc queryex sshd
 	echo,
 	echo,
 	

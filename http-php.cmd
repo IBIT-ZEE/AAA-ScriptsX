@@ -1,1 +1,1 @@
-@PHP-Server.cmd %*
+@php-http.cmd %*

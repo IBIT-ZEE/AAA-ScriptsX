@@ -1,1 +1,1 @@
-@nic-interface.ps1 %*
+@nic-list

@@ -1,0 +1,1363 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ms="urn:schemas-microsoft-com:xslt" xmlns:slp="http://schemas.microsoft.com/sleepstudy/2012" xmlns:js="http://microsoft.com/kernel"><head><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="ReportUtcOffset" content="+0:00"/><title>System Power Report</title><style type="text/css">
+      body {
+      font-family: Segoe UI Light;
+      letter-spacing: 0.02em;
+      background-color: #ffffff;
+      color: #000000;
+      margin: 0em 5.5em 0em 5.5em;
+      }
+
+      h1 {
+      color: #00b0f0;
+      font-size: 42pt;
+      }
+
+      h2 {
+      font-size: 15pt;
+      color: #00b0f0;
+      margin-top: 2em;
+      margin-bottom: 0em;
+      letter-spacing: 0.08em;
+      }
+
+      h3, h4, h5 {
+      margin-top: 1em;
+      margin-bottom: 0em;
+      letter-spacing: 0.08em;
+      }
+
+      td {
+      padding-left: 0.3em;
+      padding-right: 0.3em;
+      }
+
+      .nobatts {
+      margin-top: 1.5em;
+      font-family: Segoe UI Semibold;
+      background: #f0f0f0;
+      color: #a0a0a0;
+      font-size: 13pt;
+      padding-left:0.4em;
+      padding-right:0.4em;
+      padding-top:0.3em;
+      padding-bottom:0.3em;
+      }
+
+      .explanation {
+      color: #777777;
+      font-size: 12pt;
+      margin-bottom: 1em;
+      }
+
+      .explanation2 {
+      color: #777777;
+      font-size: 12pt;
+      margin-bottom: 0.1em;
+      }
+
+      table {
+      border-width: 0;
+      table-layout: fixed;
+      font-family: Segoe UI Light;
+      letter-spacing: 0.02em;
+      color: #000000;
+      margin-bottom: 10px;
+      }
+
+      table.defs { background-color: transparent; }
+
+      caption {
+      padding: 5px 0px 5px 0px;
+      font-weight: bold;
+      }
+
+      thead {
+      font-family: Segoe UI Semibold;
+      font-size: 85%;
+      }
+
+      text {
+      font-size: 12pt;
+      font-family: Segoe UI Light;
+      fill: #00b0f0;
+      }
+
+      .centered { text-align: center; }
+
+      .label {
+      font-family: Segoe UI Semibold;
+      font-size: 85%;
+      color: #acacac;
+      }
+
+      .labeldetails {
+      text-indent: 40px;
+      font-family: Segoe UI Semibold;
+      font-size: 85%;
+      color: #acacac;
+      }
+
+      #legend {
+      background-color: #fafafa;
+      margin-bottom: 2.2em;
+      border-spacing: 0;
+      }
+
+      #legend thead { background-color: #dfdfdf; }
+      #legend td, #legend th {
+      padding: 4px 5px 4px 5px;
+      }
+
+      #legend .spanner {
+      text-align: center;
+      background-color: #dfdfdf;
+      font-size: 85%;
+      font-weight: bold;
+      padding: 3px;
+      }
+
+      #legend td.percent { text-align: left; }
+
+      .graphline-none, .graphline-dotted, .graphline-solid, .graphline-neutral,
+      .graphline-low, .graphline-moderate, .graphline-high .graphline-nonclean {
+      font-weight: bold;
+      }
+
+      .graphline-none { color: #7d7d7d; }
+      .graphline-dotted { color: #7d7d7d; }
+      .graphline-solid { color: #7d7d7d; }
+      .graphline-neutral { color: #7d7d7d; }
+      .graphline-low { color: #2a7a2a; }
+      .graphline-moderate { color: #cc7e06; }
+      .graphline-high { color: #970d00; }
+      .graphline-nonclean { color: #FF00FF;}
+
+      .top-blocker td, #summary-table td {
+      padding: 0;
+      }
+
+      .top-blocker td a, #summary-table td a {
+      padding: 0 0.3em 0 0.3em;
+      display: block;
+      height: 100%;
+      }
+
+      .top-blocker a:link, .top-blocker a:active, .top-blocker a:visited,
+      #summary-table a:link, #summary-table a:active, #summary-table a:visited {
+      text-decoration: none;
+      color: #000000;
+      }
+
+      #summary-table th,
+      .session-summary th,
+      .top-blocker th,
+      .pdc-phases th,
+      .device-components th {
+      background-color: transparent;
+      }
+
+      #summary-table tbody tr,
+      .session-summary tbody tr,
+      .top-blocker tbody tr,
+      .device-components tbody tr,
+      .pdc-phases tbody tr {
+      background-color: #e0e0e0;
+      }
+
+      #summary-table .row-neutral,
+      .session-summary .row-neutral,
+      .top-blocker .row-neutral,
+      .device-components .row-neutral,
+      .pdc-phases .row-neutral {
+      background-color: #e0e0e0;
+      }
+
+      #summary-table .row-low,
+      .session-summary .row-low,
+      .top-blocker .row-low,
+      .device-components .row-low,
+      .pdc-phases .row-low {
+      background-color: #ace3ac;
+      }
+
+      #summary-table .row-moderate,
+      .session-summary .row-moderate,
+      .top-blocker .row-moderate,
+      .device-components .row-moderate,
+      .pdc-phases .row-moderate {
+      background-color: #fcd69a;
+      }
+
+      #summary-table .row-high,
+      .session-summary .row-high,
+      .top-blocker .row-high,
+      .device-components .row-high,
+      .pdc-phases .row-high {
+      background-color: #ffb2aa;
+      }
+
+      #summary-table .row-info,
+      .session-summary .row-info,
+      .top-blocker .row-info,
+      .device-components .row-info,
+      .pdc-phases .row-info {
+      background-color: #86becb;
+      }
+
+      #summary-table .row-nonclean,
+      .session-summary .row-nonclean,
+      .top-blocker .row-nonclean,
+      .device-components .row-nonclean,
+      .pdc-phases .row-nonclean {
+      background-color: #EE82EE;
+      }
+
+      #summary-table tbody tr:hover,
+      .top-blocker tbody tr:hover {
+      background-color: #f0f0f0;
+      }
+
+      #summary-table .row-neutral:hover,
+      .top-blocker .row-neutral:hover {
+      background-color: #f0f0f0;
+      }
+
+      #summary-table .row-low:hover,
+      .top-blocker .row-low:hover {
+      background-color: #caedca;
+      }
+
+      #summary-table .row-moderate:hover,
+      .top-blocker .row-moderate:hover {
+      background-color: #fde5c0;
+      }
+
+      #summary-table .row-high:hover,
+      .top-blocker .row-high:hover {
+      background-color: #ffd5d1;
+      }
+
+      #summary-table .row-nonclean:hover,
+      .top-blocker .row-nonclean:hover {
+      background-color:#D8BFD8;
+      }
+
+      td.colBreak { padding: 0; width: 0.15em; }
+
+      td.state { text-align: center; }
+      td.chargeOrDrain { text-align: center; }
+      td.percentLowPowerStateTime { text-align: center; }
+      td.percent { font-family: Segoe UI Symbol; text-align: center; }
+      td.hms { font-family: Segoe UI Symbol; text-align: center; }
+      td.dateTime { font-family: Segoe UI Symbol; }
+      td.blank { background-color: #ffffff; }
+      td.nullValue { text-align: center; }
+      td.center { text-align: center; }
+
+      col.percent { width: 7.5em; }
+
+      td.mw {
+      font-family: Segoe UI Symbol;
+      text-align: center;
+      }
+
+      td.acdc { text-align: center; }
+
+      span.date {
+      display: inline-block;
+      width: 5.5em;
+      }
+
+      span.time {
+      text-align: right;
+      width: 4.2em;
+      display: inline-block;
+      }
+
+      text { font-family: Segoe UI Symbol; }
+
+      .noncontigbreak {
+      height: 0.3em;
+      background-color: #1A1A28;
+      }
+
+      div.analysis-container {
+      margin-bottom: 10px;
+      border: 1px solid #ffffff;
+      }
+
+      div.analysis-container h1 {
+      padding: 10px;
+      font-size: 14px;
+      margin: 0px;
+      cursor: pointer;
+      }
+
+      div.analysis-body, div.analysis-body-collapsed {
+      padding: 10px;
+      }
+
+      div.analysis-body { display: block; }
+      div.analysis-body-collapsed { display: none; }
+
+      .analysis-base { background-color: #f7f7f7; }
+      .analysis-base h1 { color: #a0a0a0; background-color: #d0d0d0; }
+      .analysis-base h1:hover { background-color: #dfdfdf; }
+
+      .analysis-neutral { background-color: #f0f0f0; }
+      .analysis-neutral h1 { color: #a0a0a0; background-color: #d0d0d0; }
+      .analysis-neutral h1:hover { background-color: #dfdfdf; }
+
+      .analysis-high { background-color: #ffd5d1; }
+      .analysis-high h1 { background-color: #ff8e83; color: #970d00; }
+      .analysis-high h1:hover { background-color: #ffb2aa; }
+
+      .analysis-moderate { background-color: #fde5c0; }
+      .analysis-moderate h1 { background-color: #fbc674; color: #cc7e06; }
+      .analysis-moderate h1:hover { background-color: #fcd69a; }
+
+      .analysis-low { background-color: #caedca; }
+      .analysis-low h1 { background-color: #8fd98f; color: #2a7a2a; }
+      .analysis-low h1:hover { background-color: #ace3ac; }
+
+      .analysis-info { background-color: #b2e5e5; }
+      .analysis-info h1 { background-color: #1aa3a3; color: #0b5e56; }
+      .analysis-info h1:hover { background-color: #86becb; }
+
+      .analysis-empty {
+      color: #a0a0a0;
+      font-size: 14px;
+      padding: 10px;
+      font-weight: bold;
+      }
+    </style><style>
+      .expander { font-family: "Consolas"; font-weight: bold; }
+      .warning { background-color: #fde5c0; }
+      .warning h1 { background-color: #fbc674; color: #cc7e06; }
+      .warning h1:hover { background-color: #fcd69a; }
+      .error { background-color: #ffd5d1; }
+      .error h1 { background-color: #ff8e83; color: #970d00; }
+      .error h1:hover { background-color: #ffb2aa; }
+      code { font-family: "Consolas"; }
+
+      pre {
+      font-family: "Consolas";
+      display: block;
+      border: 1px dashed #b0b0b0;
+      padding: 10px;
+      margin: 10px 0px 10px 0px;
+      }
+
+      .scroll-top-button {
+      border: 2px solid #000000;
+      background-color: #ffffff;
+      padding: 5px 3px 5px 3px;
+      font-size: 12px;
+      font-family: Segoe UI Semibold;
+      float: left;
+      border-radius: 18px;
+      margin-top: 15px;
+      margin-left: -60px;
+      }
+
+      .scroll-top-button:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
+      }
+
+      .scenario-details, .scenario-details-collapsed {
+      padding: 5px;
+      background-color: #f0f0f0;
+      width: 864px;
+      border-left: 2px solid #ffffff;
+      }
+
+      .scenario-details { display: block; }
+      .scenario-details-collapsed { display: none; }
+
+      .details-expander {
+      background-color: #dfdfdf;
+      font-weight: bold;
+      cursor: pointer;
+      }
+
+      .details-expander:hover { background-color: #cfcfcf; }
+
+      ul { list-style: square; }
+    </style><script type="text/javascript">
+    // Add support for drawing dashed lines to Canvas
+    CanvasRenderingContext2D.prototype.dashedLine = function (x0, y0, x1, y1, dashArray) {
+        if (dashArray == null) {
+            dashArray = [4, 4];
+        }
+
+        var dx = x1 - x0;
+        var dy = y1 - y0;
+        var distance = Math.sqrt(Math.pow((x1 - x0), 2) + Math.pow((y1 - y0), 2));
+        var theta = Math.atan(dy / dx);
+        if (dx < 0) {
+            theta += Math.PI;
+        }
+
+        var i = 0;
+        while (distance > 0) {
+            var length = Math.min(distance, dashArray[i]);
+            x0 += length * Math.cos(theta);
+            y0 += length * Math.sin(theta);
+            if (i % 2 == 0) {
+                this.lineTo(x0, y0);
+
+            } else {
+                this.moveTo(x0, y0);
+            }
+
+            distance -= length;
+            i = (i + 1) % dashArray.length;
+        }
+    };
+    
+    // Formats a number using the current locale (to handle the 1000's separator).
+    // The result is rounded so no decimal point is shown.
+    function numberToLocaleString(value) {
+        var localeString = Math.round(parseFloat(value + '')).toLocaleString();
+        return localeString.substring(0, localeString.indexOf('.'));
+    }
+
+    function padLeft(number, length) {
+        var str = '' + number;
+        while (str.length < length) {
+            str = '0' + str;
+        }
+
+        return str;
+    }
+
+    // Returns the number of milliseconds between 2 date-times represented as strings.
+    function msBetween(startTime, endTime) {
+        return startTime > endTime
+               ? msBetween(endTime, startTime)
+               : parseDateTime(endTime) - parseDateTime(startTime);
+    }
+
+    var dateFormat = /(\d{4})-(\d{2})-(\d{2})[T](\d{2}):(\d{2}):(\d{2})/
+
+    // Parses a date-time string and returns a Date (i.e. number of milliseconds)
+    function parseDateTime(value) {
+        if (!value) {
+            return 0;
+        }
+
+        var match = dateFormat.exec(value)
+        if (!match) {
+            return 0;
+        }
+
+        return Date.parse(match[1] + '/' + match[2] + '/' +
+                          match[3] + ' ' + match[4] + ':' +
+                          match[5] + ':' + match[6])
+    }
+
+    // Parses just the date portion of a date-time string and returns a Date
+    // (i.e. number of milliseconds)
+    function parseDate(value) {
+        if (!value) {
+            return 0;
+        }
+
+        var match = dateFormat.exec(value)
+        if (!match) {
+            return 0;
+        }
+
+        return Date.parse(match[1] + '/' + match[2] + '/' + match[3])
+    }
+
+    var durationFormat = /P((\d+)D)?T((\d+)H)?((\d+)M)?(\d+)S/
+
+    // Convert a string of the form P10DT1H15M40S to a count of milliseconds
+    function parseDurationToMs(value) {
+        var match = durationFormat.exec(value)
+        if (!match) {
+            return 0
+        }
+
+        var days = parseInt(match[2] || '0');
+        var hrs = parseInt(match[4] || '0');
+        var mins = parseInt(match[6] || '0');
+        var secs = parseInt(match[7] || '0');
+        return ((((((days * 24) + hrs) * 60) + mins) * 60) +  secs) * 1000;
+    }
+
+    // Converts milliseconds to days
+    function msToDays(ms) {
+        return (ms / 1000 / 60 / 60 / 24);
+    }
+
+    function daysToMs(days) {
+        return (days * 24 * 60 * 60 * 1000);
+    }
+
+    // Formats a number of milliseconds as h:mm:ss
+    function formatDurationMs(value) {
+        var ms = parseInt(value);
+        var secs = ms / 1000;
+        var mins = secs / 60;
+        var hrs = Math.floor(mins / 60);
+        mins = Math.floor(mins % 60);
+        secs = Math.floor(secs % 60);
+        return hrs + ':' + padLeft(mins,2) + ':' + padLeft(secs,2);
+    }
+
+    // Converts a millisecond timestamp to a day and month string
+    // Note: dayOffset is forward from date.
+    function dateToDayAndMonth(ms, dayOffset) {
+        var adjustedDate = new Date(ms + (dayOffset * 24 * 60 * 60 * 1000));
+        return padLeft(adjustedDate.getMonth() + 1, 2) + "-" +
+               padLeft(adjustedDate.getDate(), 2);
+    }
+
+    // Takes a millisecond timestamp and returns a new millisecond timestamp
+    // rounded down to the current day.
+    function dateFloor(ms) {
+        var dt = new Date(ms);
+        return Date.parse(dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate());
+    }
+
+    var osstate = "All";
+    var duration = "Alltime";
+
+  // Actions values based on os power state radio button selection.
+  function osStateValueChanged() {
+    if (document.getElementById('is_bug_session').checked) {
+        osstate = document.getElementById("is_bug_session").value;
+    } else if (document.getElementById('is_all_session').checked) {
+        osstate = document.getElementById("is_all_session").value;
+    } else if (document.getElementById('is_shutdown_session').checked) {
+        osstate = document.getElementById("is_shutdown_session").value;
+    } else if (document.getElementById('is_screenoff_session').checked) {
+        osstate = document.getElementById("is_screenoff_session").value;
+    } else if (document.getElementById('is_sleep_session').checked) {
+        osstate = document.getElementById("is_sleep_session").value;
+    } else if (document.getElementById('is_hib_session').checked) {
+        osstate = document.getElementById("is_hib_session").value;
+    } else if (document.getElementById('is_active_session').checked) {
+        osstate = document.getElementById("is_active_session").value;
+    }
+
+    searchTable(osstate, duration);
+  }
+
+  // Actions values based on "duration" radio button selection.
+  function durationValueChanged() {
+    if (document.getElementById('is_all_time').checked) {
+        duration = document.getElementById("is_all_time").value;
+
+    } else if (document.getElementById('is_10_session').checked) {
+        duration = document.getElementById("is_10_session").value;
+    }
+
+    searchTable(osstate, duration);
+  }
+
+  // Summary table selection logic based on radio button selection.
+  function searchTable(osstate, duration) {
+    var foundstate, foundduration, table, tr, td, i, j, k;
+    table = document.getElementById("summary-table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        //TODO: to optimize this we need to use getElementsByClassName.
+        for (j = 0; j < td.length; j++) {
+            if (td[j].className == "hms") {
+                if (duration == "10:00") {
+                    var dur = td[j].textContent;
+                    var HourNum = parseInt(dur);
+                    var subduration = dur.substr(dur.indexOf(":") + 1);
+                    var MinNum = parseInt(subduration);
+                    if (HourNum >=1 || MinNum >= 10) {
+                        foundduration = true;
+                    }
+                }
+            }
+
+            if ((osstate != "All") && td[j].className == "state") {
+                // in case of shutdown compare with all shutdown variant.
+                if ((osstate == "Shutdown")) {
+                    if ((td[j].textContent == "Shutdown") || (td[j].textContent == "Shutdown (Hybrid)")) {
+                        foundstate = true;
+                    }
+                }
+                // in case of standby AoAc or S3, compare sleep
+                if ((osstate == "Standby")) {
+                    if ((td[j].textContent == "Sleep") || (td[j].textContent == "Sleep (Hybrid)")) {
+                        foundstate = true;
+                    }
+                }
+                // in case of screen off, compare screen off.
+                if ((osstate == "ScreenOff")) {
+                    if ((td[j].textContent == "Screen Off")) {
+                        foundstate = true;
+                    }
+                }
+
+                if (osstate == "Bug Check") {
+                    if ((td[j].textContent == "Bugcheck") || (td[j].textContent == "Abnormal Shutdown")) {
+                        foundstate = true;
+                    }
+
+                } else if (td[j].textContent == osstate) {
+                    foundstate = true;
+                }
+            }
+        } // end of inner for loop.
+
+        // make decision what to show and what to hide.
+        if (duration == "10:00" && (osstate != "All")) {
+            if (foundstate && foundduration) {
+                tr[i].style.display = "";
+                foundstate = false;
+                foundduration = false;
+
+            } else {
+                if (td.length) {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+        if (duration == "10:00" && (osstate == "All")) {
+            if (foundduration) {
+                tr[i].style.display = "";
+                foundstate = false;
+                foundduration = false;
+
+            } else {
+                if (td.length) {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+        if (duration == "Alltime" && (osstate == "All")) {
+            tr[i].style.display = "";
+            foundstate = false;
+            foundduration = false;
+        }
+
+        if (duration == "Alltime" && (osstate != "All")) {
+            if (foundstate) {
+                tr[i].style.display = "";
+                foundstate = false;
+                foundduration = false;
+
+            } else {
+                if (td.length) {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+        foundstate = false;
+        foundduration = false;
+    }
+}
+    
+    Timegraph = {
+        axisTop: 9.5,
+        axisRight: 24.5,
+        axisBottom: 25.5,
+        axisLeft: 25.5,
+        ticks: 10,
+
+        // Maximum number of 24 hour ticks for showing 12 and 6 hour ticks
+
+        ticks12Hour: 8,
+        ticks6Hour: 4,
+
+        // Shading
+
+        shadingColor: "#d0d0d0",
+
+        precompute: function (graph) {
+            var canvas = graph.canvas;
+            var data = graph.data;
+            var min = 0;
+            var max = 0;
+
+            graph.height = canvas.height - Timegraph.axisTop - Timegraph.axisBottom;
+            graph.width = canvas.width - Timegraph.axisLeft - Timegraph.axisRight;
+            for (var i = 0; i < data.length; i++) {
+                data[i].t0 = parseDateTime(data[i].x0);
+                data[i].t1 = parseDateTime(data[i].x1);
+
+                if (i == 0) {
+                    min = data[i].t0;
+                    max = data[i].t1;
+                }
+
+                if (data[i].t0 < min) {
+                    min = data[i].t0;
+                }
+
+                if (data[i].t1 > max) {
+                    max = data[i].t1;
+                }
+
+                data[i].yy0 =
+                    Timegraph.axisTop + graph.height - data[i].y0 * graph.height;
+
+                data[i].yy1 =
+                    Timegraph.axisTop + graph.height - data[i].y1 * graph.height;
+            }
+
+            if (graph.startTime != null) {
+                graph.startMs = parseDateTime(graph.startTime);
+
+            } else {
+                graph.startMs = min;
+            }
+
+            graph.endMs = max;
+            graph.durationMs = max - min;
+        },
+
+        drawFrame: function (graph) {
+            var canvas = graph.canvas;
+            var context = graph.context;
+
+            graph.width =
+                canvas.width - Timegraph.axisRight - Timegraph.axisLeft;
+
+            graph.height =
+                canvas.height - Timegraph.axisTop - Timegraph.axisBottom;
+
+            context.beginPath();
+            context.moveTo(Timegraph.axisLeft, Timegraph.axisTop);
+            context.lineTo(Timegraph.axisLeft + graph.width,
+                           Timegraph.axisTop);
+
+            context.lineTo(Timegraph.axisLeft + graph.width,
+                           Timegraph.axisTop + graph.height);
+
+            context.lineTo(Timegraph.axisLeft,
+                           Timegraph.axisTop + graph.height);
+
+            context.lineTo(Timegraph.axisLeft, Timegraph.axisTop);
+            context.strokeStyle = "#c0c0c0";
+            context.stroke();
+        },
+
+        drawRange: function (graph) {
+            var canvas = graph.canvas;
+            var context = graph.context;
+
+            context.font = "12pt Segoe UI";
+            context.fillStyle = "#00b0f0";
+            context.fillText("%", 0, Timegraph.axisTop + 5, Timegraph.axisLeft);
+
+            var tickSpacing = graph.height / 10;
+            var offset = Timegraph.axisTop + tickSpacing;
+            var tickValue = 90;
+            for (var i = 0; i < 9; i++) {
+                context.beginPath();
+                context.moveTo(Timegraph.axisLeft, offset);
+                context.lineTo(Timegraph.axisLeft + graph.width,
+                               offset);
+
+                context.stroke();
+                context.fillText(tickValue.toString(),
+                                 0,
+                                 offset + 5,
+                                 Timegraph.axisLeft);
+
+                offset += tickSpacing;
+                tickValue -= 10;
+            }
+        },
+
+        drawDomain: function (graph, start, end) {
+            var canvas = graph.canvas;
+            var context = graph.context;
+            var data = graph.data;
+            var duration = end - start;
+            if ((end < start)) {
+                return;
+            }
+
+            var startDay = dateFloor(start);
+            var t0 = startDay;
+            var t1 = dateFloor(end);
+            var dayOffset = 0;
+            if (start > t0) {
+                t0 = t0 + daysToMs(1);
+                dayOffset++;
+            }
+
+            if (t0 >= t1) {
+                return;
+            }
+
+            var increment =
+                Math.max(Math.floor((t1 - t0) / daysToMs(Timegraph.ticks)), 1);
+
+            var incrementMs = daysToMs(increment);
+            var spacing = (incrementMs / duration) * graph.width;
+            var offset = (t0 - start) / duration;
+            var ticksCount = Math.floor((t1 - t0) / incrementMs);
+            for (offset = offset * graph.width + Timegraph.axisLeft;
+                 offset < (graph.width + Timegraph.axisLeft);
+                 offset += spacing) {
+
+                context.beginPath();
+                context.moveTo(offset, Timegraph.axisTop);
+                context.lineTo(offset, Timegraph.axisTop + graph.height);
+                context.stroke();
+                context.fillText(dateToDayAndMonth(startDay, dayOffset),
+                                 offset,
+                                 Timegraph.axisTop + graph.height + 15,
+                                 spacing);
+
+                dayOffset += increment;
+            }
+        },
+
+        plot: function (graph, start, end) {
+            var canvas = graph.canvas;
+            var context = graph.context
+            var data = graph.data;
+
+            if ((end < start)) {
+                return;
+            }
+
+            var duration = end - start;
+            Timegraph.drawDomain(graph, start, end);
+            context.fillStyle = Timegraph.shadingColor;
+            for (var i = 0; i < data.length - 1; i++) {
+                if ((data[i].t0 < start) || (data[i].t0 > end) ||
+                    (data[i].t1 > end)) {
+
+                    continue;
+                }
+
+                var x1 = (data[i].t0 - start) / duration;
+                x1 = x1 * graph.width + Timegraph.axisLeft;
+
+                var x2 = (data[i].t1 - start) / duration;
+                x2 = x2 * graph.width + Timegraph.axisLeft;
+
+                context.globalAlpha = 0.3;
+                context.fillRect(x1, Timegraph.axisTop, (x2 - x1), graph.height);
+                context.globalAlpha = 1;
+                context.beginPath();
+                context.strokeStyle = graph.lineTypes[data[i].type].color;
+                context.lineWidth = 1.5;
+                if (graph.lineTypes[data[i].type].dotted == 1) {
+                    context.dashedLine(x1, data[i].yy0, x2, data[i].yy1);
+
+                } else {
+                    context.moveTo(x1, data[i].yy0);
+                    context.lineTo(x2, data[i].yy1);
+                }
+
+                context.stroke();
+            }
+        },
+
+        draw: function (graph) {
+            var canvas = document.getElementById(graph.element);
+            if (canvas == null) {
+                return;
+            }
+
+            var context = canvas.getContext('2d');
+            if (context == null) {
+                return;
+            }
+
+            graph.width = 0;
+            graph.height = 0;
+            graph.context = context;
+            graph.canvas = canvas;
+
+            Timegraph.precompute(graph);
+            Timegraph.drawFrame(graph);
+            Timegraph.drawRange(graph);
+            Timegraph.plot(graph, graph.startMs, graph.endMs);
+        }
+    };
+    
+    Histogram = {
+
+        // Constants
+
+        yTicks: 10,
+        axisLeft: 30.5,
+        axisBottom: 25.5,
+        paddingTop: 5,
+        maxPadding: 25,
+        barColor: "#1191c1",
+
+        // Functions
+
+        precompute: function (graph) {
+            var canvas = graph.canvas;
+            var bucketCount = 0;
+            for (var i = 0; i < graph.data.length; i++) {
+                if (graph.data[i].value > graph.max) {
+                    graph.max = graph.data[i].value;
+                }
+
+                bucketCount++;
+            }
+
+            if (graph.rangeMax != null) {
+                graph.max = Math.max(graph.max, graph.rangeMax);
+            }
+
+            graph.bucketCount = bucketCount;
+            graph.tickSpacing = (canvas.width - Histogram.axisLeft) / bucketCount;
+            graph.height = canvas.height;
+            graph.width = canvas.width;
+        },
+
+        drawFrame: function (graph) {
+            var context = graph.context;
+            var canvas = graph.canvas;
+
+            context.beginPath();
+            context.moveTo(Histogram.axisLeft, Histogram.paddingTop);
+            context.lineTo(Histogram.axisLeft,
+                           canvas.height - Histogram.axisBottom);
+
+            context.lineTo(canvas.width,
+                           canvas.height - Histogram.axisBottom);
+
+            context.stroke();
+        },
+
+        drawDomain: function (graph) {
+            var context = graph.context;
+            var tickOffset = 0;
+
+            context.font = "8pt Segoe UI";
+            context.fillStyle = "#00b0f0";
+            for (var i = 0; i < graph.bucketCount; i++) {
+                context.fillText(graph.data[i].interval,
+                                 Histogram.axisLeft + tickOffset + 2,
+                                 graph.height - 10,
+                                 graph.tickSpacing);
+
+                tickOffset += graph.tickSpacing;
+            }
+        },
+
+        drawRange: function (graph) {
+            var context = graph.context;
+            var tickSpacing = (graph.height - Histogram.axisBottom - 25) /
+                              Histogram.yTicks;
+
+            var tickIncrement = Math.round(graph.max / Histogram.yTicks);
+            var tickOffset = graph.height - Histogram.axisBottom -
+                             tickSpacing;
+
+            var tickValue = tickIncrement;
+            context.font = "12pt Segoe UI";
+            context.fillStyle = "#00b0f0";
+            for (var i = 0; i < Histogram.yTicks; i++) {
+                context.beginPath();
+                context.moveTo(Histogram.axisLeft, tickOffset);
+                context.lineTo(Histogram.axisLeft + 5, tickOffset);
+                context.stroke();
+                context.fillText(tickValue.toString(),
+                                 0,
+                                 tickOffset + 5,
+                                 Histogram.axisLeft);
+
+                tickValue += tickIncrement;
+                tickOffset -= tickSpacing;
+            }
+        },
+
+        plot: function (graph) {
+            var tickOffset = 0;
+            var context = graph.context;
+            context.fillStyle = Histogram.barColor;
+            for (var i = 0; i < graph.bucketCount; i++) {
+                if (graph.data[i].value == 0) {
+                    tickOffset += graph.tickSpacing;;
+                    continue;
+                }
+
+                var barHeight =
+                    Math.round((graph.data[i].value * (graph.height - 50)) / graph.max);
+
+                context.fillRect(Histogram.axisLeft + tickOffset + Histogram.paddingTop,
+                                 graph.height - Histogram.axisBottom - barHeight,
+                                 graph.tickSpacing - 10,
+                                 barHeight);
+
+                tickOffset += graph.tickSpacing;
+            }
+        },
+
+        draw: function (graph) {
+            var canvas = document.getElementById(graph.element);
+            if (canvas == null) {
+                return;
+            }
+
+            var context = canvas.getContext("2d");
+            if (context == null) {
+                return;
+            }
+
+            if (graph.data == null) {
+                return;
+            }
+
+            graph.bucketCount = 0;
+            graph.max = 0;
+            graph.tickSpacing = 0;
+            graph.width = 0;
+            graph.height = 0;
+            graph.context = context;
+            graph.canvas = canvas;
+
+            context.strokeStyle = "#c0c0c0";
+
+            Histogram.precompute(graph);
+            Histogram.drawFrame(graph);
+            Histogram.drawRange(graph);
+            Histogram.drawDomain(graph);
+            Histogram.plot(graph);
+        }
+    };
+    
+    function initializeScrollTop() {
+        var elements = document.getElementsByClassName("scroll-top-button");
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            element.onclick = function () {
+                window.scroll(0, 0);
+                window.location.replace("#");
+                if (typeof window.history.replaceState == "function") {
+                    history.replaceState({}, "", window.location.href.slice(0, -1));
+                }
+            }
+        }
+    }
+    
+    Collapser = {
+        topActiveBlockerDivs: {},
+        detailsContainers: {},
+
+        getContainerBody: function (container) {
+            var children = container.childNodes;
+            var containerBody = null;
+            for (var i = 0; i < children.length; i++) {
+                if (children[i].tagName == "DIV" &&
+                    (children[i].className == "analysis-body-collapsed" ||
+                     children[i].className == "analysis-body")) {
+
+                    containerBody = children[i];
+                    break;
+                }
+            }
+
+            return containerBody;
+        },
+
+        togglePanel: function (container) {
+            var containerBody = Collapser.getContainerBody(container);
+            if (containerBody == null) {
+                return;
+            }
+
+            var heading = container.getElementsByTagName("H1")[0];
+            var expander = heading.getElementsByClassName("expander")[0];
+            if (containerBody.className == "analysis-body-collapsed") {
+                containerBody.className = "analysis-body";
+                expander.innerHTML = "- ";
+
+            } else {
+                containerBody.className = "analysis-body-collapsed";
+                expander.innerHTML = "+ ";
+            }
+        },
+
+        toggleDetails: function (element) {
+            if (element.className == "scenario-details-collapsed") {
+                element.className = "scenario-details";
+
+            } else {
+                element.className = "scenario-details-collapsed";
+            }
+        },
+
+        initializePanels: function () {
+            var elements = document.getElementsByClassName("analysis-container");
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+                var heading = element.getElementsByTagName("h1")[0];
+                if (heading == null) {
+                    continue;
+                }
+
+                heading.onclick = function () {
+                    var container = this.parentNode;
+                    Collapser.togglePanel(container);
+                };
+            }
+        },
+
+        initializeDetails: function() {
+            var elements = document.getElementsByClassName("details-expander");
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+                var targetId = "details-" + element.id.replace("details-expand-", "");
+                var targetElement = document.getElementById(targetId);
+                Collapser.detailsContainers[element.id] = targetElement;
+                element.onclick = function () {
+                    var targetElement = Collapser.detailsContainers[this.id];
+                    Collapser.toggleDetails(targetElement);
+                };
+            }
+        },
+
+        initializeLinks: function () {
+            var links = document.getElementsByClassName("top-active-link");
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i];
+                var targetId = link.getAttribute("href").substring(1);
+                var targetElement = document.getElementById(targetId);
+                if (targetElement.tagName.toLowerCase() == "tr") {
+                    // tr, tbody, table, div.analysis-body-*, div.analysis-container
+                    Collapser.topActiveBlockerDivs[targetId] =
+                        targetElement.parentNode.parentNode.parentNode.parentNode;
+
+                } else {
+                    Collapser.topActiveBlockerDivs[targetId] = targetElement;
+                }
+
+                link.onclick = function () {
+                    var targetId = this.getAttribute("href").substring(1);
+                    var targetContainer = Collapser.topActiveBlockerDivs[targetId];
+                    var container = targetContainer;
+                    while ((container != null) && (container.tagName == "DIV")) {
+                        var containerBody = Collapser.getContainerBody(container);
+                        if (containerBody == null) {
+                            return;
+                        }
+
+                        if (containerBody.className == "analysis-body-collapsed") {
+                            Collapser.togglePanel(container);
+                        }
+
+                        container = container.parentNode.parentNode;
+                    }
+
+                    targetContainer.scrollIntoView(true);
+                };
+            }
+        },
+
+        initializeCollapser: function () {
+            Collapser.initializePanels();
+            Collapser.initializeDetails();
+            TableDecorator.decorate({
+                element: ".top-blocker",
+                withClass: "top-active-link"
+            });
+
+            Collapser.initializeLinks();
+        },
+
+        initialize: function () {
+            if (window.addEventListener != null) {
+                window.addEventListener("load", Collapser.initializeCollapser, false);
+
+            } else if (window.attachEvent != null) {
+                window.attachEvent("onload", Collapser.initializeCollapser);
+            }
+        }
+    };
+    
+    TableDecorator = {
+        decorateTable: function (table, linkClass) {
+            if (table == null) {
+                return;
+            }
+
+            var rows = table.getElementsByTagName("tr");
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                var anchor = row.getElementsByClassName("row-link")[0];
+                if (anchor == null || anchor.tagName.toLowerCase() != "a") {
+                    continue;
+                }
+
+                var link = anchor.getAttribute("href");
+                for (var j = 0; j < row.children.length; j++) {
+                    var cell = row.children[j];
+                    if (cell == anchor.parentNode) {
+                        continue;
+                    }
+
+                    var classString = "";
+                    if (linkClass != null) {
+                        classString = " class=\"" + linkClass + "\"";
+                    }
+
+                    cell.innerHTML =
+                        "<a href=\"" + link + "\"" + classString + ">" +
+                        cell.innerHTML + "</a>";
+                }
+            }
+        },
+
+        decorate: function (tableData) {
+            var selection = tableData.element;
+            if (selection.charAt(0) == ".") {
+                var className = selection.substring(1);
+                var elements = document.getElementsByClassName(className);
+                for (var i = 0; i < elements.length; i++) {
+                    if (elements[i].tagName.toLowerCase() == "table") {
+                        TableDecorator.decorateTable(elements[i], tableData.withClass);
+                    }
+                }
+
+            } else if (selection.charAt(0) == "#") {
+                var idName = selection.substring(1);
+                var element = document.getElementById(idName);
+                if (element.tagName.toLowerCase() == "table") {
+                    TableDecorator.decorateTable(element, tableData.withClass);
+                }
+            }
+        },
+    };
+    
+      Collapser.initialize();
+
+      
+    drainGraphData = [
+    { x0: "2022-11-19T13:30:26", x1: "2022-11-19T14:28:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-19T14:28:00", x1: "2022-11-19T14:34:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-19T14:34:00", x1: "2022-11-19T15:29:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-20T13:34:30", x1: "2022-11-20T14:34:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-20T14:34:00", x1: "2022-11-20T14:40:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-20T14:40:00", x1: "2022-11-20T15:32:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-20T15:32:00", x1: "2022-11-20T15:37:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-20T15:37:00", x1: "2022-11-20T15:54:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T11:40:15", x1: "2022-11-21T12:36:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T12:36:00", x1: "2022-11-21T12:42:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T12:42:00", x1: "2022-11-21T13:42:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T13:42:00", x1: "2022-11-21T13:48:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T13:48:00", x1: "2022-11-21T14:42:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T14:42:00", x1: "2022-11-21T14:48:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T14:48:00", x1: "2022-11-21T15:43:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T15:43:00", x1: "2022-11-21T15:48:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T15:48:00", x1: "2022-11-21T16:44:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T16:44:00", x1: "2022-11-21T16:50:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T16:50:00", x1: "2022-11-21T17:42:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T17:42:00", x1: "2022-11-21T17:48:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T17:48:00", x1: "2022-11-21T18:44:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T18:44:00", x1: "2022-11-21T18:50:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T18:50:00", x1: "2022-11-21T19:45:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T19:45:00", x1: "2022-11-21T19:51:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T19:51:00", x1: "2022-11-21T19:57:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T19:57:00", x1: "2022-11-21T20:02:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:02:00", x1: "2022-11-21T20:08:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:08:00", x1: "2022-11-21T20:13:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:13:00", x1: "2022-11-21T20:19:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:19:00", x1: "2022-11-21T20:24:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:24:00", x1: "2022-11-21T20:29:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:29:00", x1: "2022-11-21T20:35:00", y0: NaN, y1: NaN, type: 5}, 
+{ x0: "2022-11-21T20:35:00", x1: "2022-11-21T20:40:00", y0: NaN, y1: NaN, type: 5}, 
+
+    ];
+    
+    drainGraphLineTypes = [
+        { color: "none", dotted: 0 },
+        { color: "#7d7d7d", dotted: 0 },
+        { color: "#2a7a2a", dotted: 0 },
+        { color: "#cc7e06", dotted: 0 },
+        { color: "#970d00", dotted: 0 },
+        { color: "#7d7d7d", dotted: 1 },
+        { color: "#2a7a2a", dotted: 1 },
+        { color: "#cc7e06", dotted: 1 },
+        { color: "#970d00", dotted: 1 },
+    ];
+
+    function main() {
+    
+        TableDecorator.decorate({element: "#summary-table"});
+      
+        Timegraph.draw({
+            element: "drain-graph",
+            data: drainGraphData,
+            lineTypes: drainGraphLineTypes,
+            startTime: "2022-11-18T20:44:50",
+            endTime: "2022-11-21T20:44:51"
+        });
+
+        initializeScrollTop();
+    }
+
+    if (window.addEventListener != null) {
+        window.addEventListener("load", main, false);
+
+    } else if (window.attachEvent != null) {
+        window.attachEvent("onload", main);
+    }
+    </script></head><body><h1>System Power Report</h1><table class="defs"><col/><tr><td class="label">
+            COMPUTER NAME
+          </td><td>ZEE-PC</td></tr><tr><td class="label">
+            SYSTEM PRODUCT NAME
+          </td><td>System manufacturer System Product Name</td></tr><tr><td class="label">
+            BIOS
+          </td><td>2805 04/16/2020</td></tr><tr><td class="label">
+            OS BUILD
+          </td><td>19041.1.amd64fre.vb_release.191206-1406</td></tr><tr><td class="label">
+            PLATFORM ROLE
+          </td><td>Desktop</td></tr><tr><td class="label">
+          REPORT TIME
+        </td><td><span>2022-11-21 </span><span>20:44:51</span></td></tr></table><h2>System Power State Transitions</h2><div class="explanation">
+                Battery drains over the last 3 days
+              </div><canvas id="drain-graph" width="864" height="400"> </canvas><table id="legend"><colgroup><col/><col/></colgroup><caption>Legend</caption><thead><th>GRAPH LINE</th><th>DESCRIPTION</th></thead><tbody><tr><td><span class="graphline-dotted">Dotted</span></td><td colspan="2">AC power </td></tr><tr><td><span class="graphline-solid">Solid</span></td><td colspan="2">Battery power</td></tr><tr><td><span class="graphline-none">No line</span></td><td colspan="2">System powered off</td></tr><tr><td colspan="3" class="spanner"></td></tr><tr><td><span class="graphline-neutral">Grey</span></td><td colspan="2">Active Scenario</td></tr><tr><td><span class="graphline-low">Green</span></td><td>Low System Activity</td></tr><tr><td><span class="graphline-moderate">Orange</span></td><td>Moderate System Activity</td></tr><tr><td><span class="graphline-high">Red</span></td><td>High System Activity</td></tr><tr><td><span class="graphline-nonclean">Violet</span></td><td>Abnormal Shutdown</td></tr></tbody></table><h2>
+      Filter Option.
+    </h2><h4>Session Length:</h4><input type="radio" name="session1" id="is_all_time" value="Alltime" onchange="js:durationValueChanged()" checked=""/><label>All</label> <input type="radio" name="session1" id="is_10_session" value="10:00" onchange="js:durationValueChanged()"/><label>&gt; 10 min </label><h4>States:</h4><input type="radio" name="session" id="is_all_session" value="All" onchange="js:osStateValueChanged()" checked=""/><label>All</label> <input type="radio" name="session" id="is_active_session" value="Active" onchange="js:osStateValueChanged()"/><label>Active</label> <input type="radio" name="session" id="is_screenoff_session" value="ScreenOff" onchange="js:osStateValueChanged()"/><label>Screen Off </label><input type="radio" name="session" id="is_sleep_session" value="Standby" onchange="js:osStateValueChanged()"/><label>Sleep</label> <input type="radio" name="session" id="is_hib_session" value="Hibernate" onchange="js:osStateValueChanged()"/><label>Hibernate</label> <input type="radio" name="session" id="is_shutdown_session" value="Shutdown" onchange="js:osStateValueChanged()"/><label>Shutdown</label> <input type="radio" name="session" id="is_bug_session" value="Bug Check" onchange="js:osStateValueChanged()"/><label>Bug Check</label> <table id="summary-table"><colgroup><col style="width: 2em"/><col style="width: 11em;"/><col style="width: 5em;"/><col style="width: 10em;"/><col class="width: 13em;"/><col class="width: 13em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 1em;"/></colgroup><thead><tr><th></th><th>START TIME</th><th>DURATION</th><th>STATE</th><th colspan="2">ENERGY CHANGE</th><th colspan="2">CHANGE RATE</th><th colspan="2">% LOW POWER STATE TIME</th><th>% CAPACITY REMAINING AT START</th></tr></thead><tr class="row-nonclean"><td class="centered"><a href="#connected-standby-session-1" class="row-link">1</a></td><td class="dateTime"><span class="date">2022-11-19 </span><span class="time">13:30:16</span></td><td class="hms">0:00:00</td><td class="state">Active</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">-</td><td class="percentLowPowerStateTime" colspan="2"><xsl-text>-</xsl-text></td><td class="nullValue">-</td><td class="blank"></td></tr><tr class="row-neutral"><td class="centered"><a href="#connected-standby-session-2" class="row-link">2</a></td><td class="dateTime"><span class="date">2022-11-20 </span><span class="time">13:34:30</span></td><td class="hms">2:19:29</td><td class="state">Active</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">Charge</td><td class="percentLowPowerStateTime" colspan="2"><xsl-text>-</xsl-text></td><td class="nullValue">-</td><td class="blank"></td></tr><tr class="row-neutral"><td class="centered"><a href="#connected-standby-session-3" class="row-link">3</a></td><td class="dateTime"><span class="date"> </span><span class="time">15:57:41</span></td><td class="hms">19:42:22</td><td class="state">Shutdown</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">-</td><td class="percentLowPowerStateTime" colspan="2"><xsl-text>-</xsl-text></td><td class="nullValue">-</td><td class="blank"></td></tr><tr class="row-neutral"><td class="centered"><a href="#connected-standby-session-4" class="row-link">4</a></td><td class="dateTime"><span class="date">2022-11-21 </span><span class="time">11:40:15</span></td><td class="hms">9:04:34</td><td class="state">Active</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">Charge</td><td class="percentLowPowerStateTime" colspan="2"><xsl-text>-</xsl-text></td><td class="nullValue">-</td><td class="blank"></td></tr><tr class="row-neutral"><td class="centered"><a href="#connected-standby-session-5" class="row-link">5</a></td><td class="dateTime"><span class="date"> </span><span class="time">20:44:51</span></td><td class="hms">0:00:00</td><td class="state">Report Generated</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">-</td><td class="percentLowPowerStateTime" colspan="2"><xsl-text>-</xsl-text></td><td class="nullValue">-</td><td class="blank"></td></tr></table><h2>Analysis Results</h2><div class="explanation">Analysis of issues that might cause poor battery life</div><a name="connected-standby-session-1"/><div class="scroll-top-button">Top</div><h3>
+      System Power State:  Active</h3><table class="session-summary"><colgroup><col style="width: 2em"/><col style="width: 11em;"/><col style="width: 5em;"/><col style="width: 10em"/><col style="width: 16em"/><col style="width: 16em"/><col style="width: 6em;"/></colgroup><thead><tr><th></th><th>START TIME</th><th>DURATION</th><th>STATE</th><th>ENTRY REASON</th><th>EXIT REASON</th><th>% CAPACITY REMAINING AT START</th><th></th></tr></thead><tbody><tr class="row-nonclean"><td class="centered">1</td><td class="dateTime"><span class="date">2022-11-19 </span><span class="time">13:30:16</span></td><td class="hms">0:00:00</td><td class="OsState" align="center">Active</td><td class="EntryReason" align="center">----</td><td class="ExitReason" align="center">Unknown</td><td class="nullValue">-</td></tr></tbody></table><h4>OS State Data</h4><div class="explanation">
+      Data obtained from the Event Viewer Logger.
+    </div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Detailed OS State Data
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No data obtained.</div></div></div><xsl-text></xsl-text><a name="connected-standby-session-2"/><div class="scroll-top-button">Top</div><h3>
+      System Power State:  Active</h3><table class="session-summary"><colgroup><col style="width: 2em"/><col style="width: 11em;"/><col style="width: 5em;"/><col style="width: 10em;"/><col class="width: 13em;"/><col class="width: 13em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/></colgroup><thead><tr><th></th><th>START TIME</th><th>DURATION</th><th>STATE</th><th colspan="2">ENERGY CHANGE</th><th colspan="2">CHANGE RATE</th><th colspan="2">% LOW POWER STATE TIME</th><th>% CAPACITY REMAINING AT START</th><th></th></tr></thead><tbody><tr class="row-neutral"><td class="centered">2</td><td class="dateTime"><span class="date">2022-11-20 </span><span class="time">13:34:30</span></td><td class="hms">2:19:29</td><td class="state">Active</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">Charge</td><td class="nullValue" colspan="2">-</td><td class="nullValue">-</td></tr></tbody></table><h4>Srum Data</h4><div class="explanation">
+      Data obtained from the SRUM database.
+      * in Power Estimation means the power value is from energy meter.
+      Otherwise, it is from software model estimation.
+    </div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Energy Meter
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No energy meter data obtained.</div></div></div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Power Estimation
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No power estimation data obtained.</div></div></div><a name="connected-standby-session-3"/><div class="scroll-top-button">Top</div><h3>
+      System Power State:  Shutdown</h3><table class="session-summary"><colgroup><col style="width: 2em"/><col style="width: 11em;"/><col style="width: 5em;"/><col style="width: 10em"/><col style="width: 16em"/><col style="width: 16em"/><col style="width: 6em;"/></colgroup><thead><tr><th></th><th>START TIME</th><th>DURATION</th><th>STATE</th><th>ENTRY REASON</th><th>EXIT REASON</th><th>% CAPACITY REMAINING AT START</th><th></th></tr></thead><tbody><tr class="row-neutral"><td class="centered">3</td><td class="dateTime"><span class="date">2022-11-20 </span><span class="time">15:57:41</span></td><td class="hms">19:42:22</td><td class="OsState" align="center">Shutdown</td><td class="EntryReason" align="center">----</td><td class="ExitReason" align="center">----</td><td class="nullValue">-</td></tr></tbody></table><h4>OS State Data</h4><div class="explanation">
+      Data obtained from the Event Viewer Logger.
+    </div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Detailed OS State Data
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No data obtained.</div></div></div><xsl-text></xsl-text><a name="connected-standby-session-4"/><div class="scroll-top-button">Top</div><h3>
+      System Power State:  Active</h3><table class="session-summary"><colgroup><col style="width: 2em"/><col style="width: 11em;"/><col style="width: 5em;"/><col style="width: 10em;"/><col class="width: 13em;"/><col class="width: 13em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/><col style="width: 6em;"/></colgroup><thead><tr><th></th><th>START TIME</th><th>DURATION</th><th>STATE</th><th colspan="2">ENERGY CHANGE</th><th colspan="2">CHANGE RATE</th><th colspan="2">% LOW POWER STATE TIME</th><th>% CAPACITY REMAINING AT START</th><th></th></tr></thead><tbody><tr class="row-neutral"><td class="centered">4</td><td class="dateTime"><span class="date">2022-11-21 </span><span class="time">11:40:15</span></td><td class="hms">9:04:34</td><td class="state">Active</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="nullValue">-</td><td class="chargeOrDrain">Charge</td><td class="nullValue" colspan="2">-</td><td class="nullValue">-</td></tr></tbody></table><h4>Srum Data</h4><div class="explanation">
+      Data obtained from the SRUM database.
+      * in Power Estimation means the power value is from energy meter.
+      Otherwise, it is from software model estimation.
+    </div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Energy Meter
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No energy meter data obtained.</div></div></div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Power Estimation
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No power estimation data obtained.</div></div></div><a name="connected-standby-session-5"/><div class="scroll-top-button">Top</div><h3>
+      System Power State:  Report Generated</h3><table class="session-summary"><colgroup><col style="width: 2em"/><col style="width: 11em;"/><col style="width: 5em;"/><col style="width: 10em"/><col style="width: 16em"/><col style="width: 16em"/><col style="width: 6em;"/></colgroup><thead><tr><th></th><th>START TIME</th><th>DURATION</th><th>STATE</th><th>ENTRY REASON</th><th>EXIT REASON</th><th>% CAPACITY REMAINING AT START</th><th></th></tr></thead><tbody><tr class="row-neutral"><td class="centered">5</td><td class="dateTime"><span class="date">2022-11-21 </span><span class="time">20:44:51</span></td><td class="hms">0:00:00</td><td class="OsState" align="center">Report Generated</td><td class="EntryReason" align="center">----</td><td class="ExitReason" align="center">----</td><td class="nullValue">-</td></tr></tbody></table><h4>OS State Data</h4><div class="explanation">
+      Data obtained from the Event Viewer Logger.
+    </div><div class="analysis-container analysis-neutral"><h1><span class="expander">+ </span>Detailed OS State Data
+      </h1><div class="analysis-body-collapsed"><div class="analysis-empty">No data obtained.</div></div></div><h2>
+      Installed batteries
+    </h2><div class="explanation">
+      Information about each currently installed battery
+    </div><div class="nobatts">
+          No batteries are currently installed.
+        </div><br/><br/><br/></body></html>

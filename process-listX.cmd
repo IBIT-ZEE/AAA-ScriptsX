@@ -1,7 +1,25 @@
-@wmic ^
-	process ^
-		where (caption!='WMIC.exe' AND commandline like '%%%~1%%' ) ^
-		get * ^
-		/format:value
+::call AAA-Log %0 %*
 
-:: processid,name,caption,commandline,sessionid,status,threadcount,workingsetsize
+
+:MAIN
+	@echo off
+	
+	if "%1"=="-?" ( AAA-Obs %0 )
+
+	wmic.exe ^
+		process ^
+			where (caption!='WMIC.exe' AND commandline like '%%%~1%%' ) ^
+			get * ^
+			/format:value
+
+	exit /b
+
+
+:OBS
+>ps.cmd
+>process-list.cmd
+
+
+	Syntax:
+
+		psX <*prog*>

@@ -1,1 +1,5 @@
-aaa-message "Use:" "" "Log-"
+@aaa-message ^
+	" " ^
+	"	Use:" ^
+	"" ^
+	"		Log-"

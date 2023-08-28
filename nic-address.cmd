@@ -1,0 +1,1 @@
+@powershell.cmd -c "Get-CimInstance -Class Win32_NetworkAdapterConfiguration | Select-Object -Property dESCRIPTION, MACAddress, IPAddress, IPEnabled | Sort-Object -Property ipenabled -Descending | Format-Table -AutoSize"
