@@ -16,10 +16,10 @@ call AAA-Log %0 %*
 	echo Uploading...
 	echo,
 	echo,
-	
-	:: call git push /force --verbose
-	call git push --verbose --dry-run --force
-	:: call git push --verbose
+
+	:: call git push --verbose --dry-run --force	
+	:: call git push --force --verbose
+	call git push --verbose
 	echo,
 	echo,
 	
