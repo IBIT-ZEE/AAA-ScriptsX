@@ -1,38 +1,33 @@
 call AAA-Log %0 %*
 
-
 :MAIN
-	if "%1"=="-?" ( AAA-Obs %0 )
+	if "%1"==""    ( AAA-Obs %0 )
+	if "%1"=="+++" ( goto :GO )
 
-	:: ?IS THIS A .GIT FOLDER
-	if not exist ".git" (
-		AAA-Message ^
-			"Current folder does not appear to be a git repository..." ^
-			"" ^
-			"no .git folder detected..."
-		)
-
-	:: UPLOAD
-	echo Uploading...
+:END
 	echo,
 	echo,
-
-	:: call git push --verbose --dry-run --force	
-	:: call git push --force --verbose
-	call git push --verbose
-	echo,
-	echo,
-	
 	exit /b
+
+
+:GO
+	echo 2DO*** 
+	goto :END
 
 
 :OBS
 >git-
 >git-add
+>git-commit
+>git-list
+>git-status
+>git-update
 
-	Syntax:
 
-		git-update
+	MACRO:
+	
+		git-add ______ to stage all files in folder
+		git-commit ___ to send the files to the git repository
+		git-upload ___ upload the files to the web
 
-	* test if current-folder is a valid .git repository
-	* upload the current .git folder to web
+	* do main updating steps in 1 go

@@ -1,0 +1,1 @@
+@echo [7m  %USERNAME%  ^|  %date% %time%  ^|  %cd%  [0m

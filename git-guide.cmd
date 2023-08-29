@@ -15,44 +15,15 @@ call AAA-Log %0 %*
 >git-update
 
 
-0. ________________________________________
+// INFORMATION
+git-list ..... show the files staged in this folder
+git-status ... show git system parameters
 
 
-git-list
-
-	to see the files staged in this folder
-	...
-
-git-status
-
-	to see git system parameters
-
-
-1. ________________________________________
-
-
-git-add
-
-	to stage all files in folder
-	(stage then commit)
-
-
-2. ________________________________________
-
-
-git-commit
-
-	to send the files to the git repository
-
-
-
-
-3. ________________________________________
-
-
-git-update
-
-	upload the files to the web
+// FILES
+git-add ...... stage all files in folder (stage then commit)
+git-commit ... send the files to the git repository
+git-update ... upload the files to the web
 
 
 
